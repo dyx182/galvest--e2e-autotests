@@ -1,5 +1,6 @@
 package galvest.pages;
 
+import galvest.pages.base_pages.BasePage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Header extends BasePage{
+public class Header extends BasePage {
 
     @FindBy(css = "a.catalog")
     private WebElement btnCatalog;

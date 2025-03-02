@@ -20,16 +20,14 @@ public class TestBase {
     @BeforeEach
     public void setUp() {
         System.setProperty("WebDriver.chrome.driver", "drivers\\chromedriver.exe");
-        // Настройки Chrome (можно настроить по необходимости)
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized"); // Открыть браузер в полноэкранном режиме
-        options.addArguments("--disable-popup-blocking"); // Отключить блокировку всплывающих окон
+        options.addArguments("--start-maximized");
+        options.addArguments("--disable-popup-blocking");
 
-        // Инициализация драйвера
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
 

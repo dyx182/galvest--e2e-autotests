@@ -21,7 +21,7 @@ public class PlacingAnOrder extends TestBase {
                 .clickBtnCatalog()
                 .clickBtnProduct()
                 .assertTextOnPage()
-                .addGoodToBasket()
+                .addGoodElement(13)
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()

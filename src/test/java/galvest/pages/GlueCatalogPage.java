@@ -1,34 +1,28 @@
 package galvest.pages;
 
+import galvest.pages.base_pages.BaseCatalogPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GlueCatalogPage extends BasePage{
+public class GlueCatalogPage extends BaseCatalogPage {
 
     @FindBy(xpath = "//div[2]/ul/li[3]/span")
     private WebElement titlePageText;
 
-    @FindBy(xpath = "//a[@data-id='401'][@class='button buy to_basket']")
-    private WebElement btnAddToBasketElement;
-
-    @FindBy(xpath = "//li[14]/div/div[1]")
-    private WebElement priceOfElement;
-
-    Header header = new Header(driver, wait);
-
-    public Header getHeader() {
-        return header;
-    }
+    private Header header = new Header(driver, wait);
 
     public GlueCatalogPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
         PageFactory.initElements(driver, this);
+    }
+
+    public Header getHeader() {
+        return header;
     }
 
     public GlueCatalogPage assertTextOnPage() {
@@ -37,13 +31,8 @@ public class GlueCatalogPage extends BasePage{
         return this;
     }
 
-    public GlueCatalogPage addGoodToBasket() {
-        Actions actions = new Actions(driver);
-        actions
-                .moveToElement(btnAddToBasketElement)
-                .click()
-                .perform();
+    public GlueCatalogPage addGoodElement(int index) {
+        getCatalogElement(index).addElement();
         return this;
     }
-
 }

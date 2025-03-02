@@ -1,6 +1,5 @@
-package galvest.pages;
+package galvest.pages.base_pages;
 
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,14 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class BasePage {
+public abstract class BasePage {
+
+    @FindBy(xpath = "//jdiv[@class='hoverArea__cMvXG']")
+    private WebElement sendMessage;
 
     protected WebDriver driver;
-
     protected WebDriverWait wait;
-
-    @FindBy(xpath = "//jdiv[@class='hoverArea__ibZrv']")
-    private WebElement sendMessage;
 
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;

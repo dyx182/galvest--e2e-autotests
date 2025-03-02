@@ -1,5 +1,6 @@
 package galvest.pages;
 
+import galvest.pages.base_pages.BasePage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,7 @@ public class BasketPage extends BasePage {
     @FindBy(xpath = "//td[@class='price-show-401-0']")
     private WebElement amountText;
 
-    Header header = new Header(driver, wait);
+    private Header header = new Header(driver, wait);
 
     public Header getHeader() {
         return header;
