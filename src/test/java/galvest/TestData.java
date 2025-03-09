@@ -16,7 +16,6 @@ public class TestData {
 
     public static final String COMMENT = "Тестовый комментарий";
 
-    // Приватный конструктор, чтобы предотвратить создание экземпляров данного класса
     private TestData() {
         throw new UnsupportedOperationException("This is a constants class and cannot be instantiated");
     }

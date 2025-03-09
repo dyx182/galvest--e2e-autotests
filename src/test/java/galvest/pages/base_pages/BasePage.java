@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public abstract class BasePage {
+public class BasePage {
 
     @FindBy(xpath = "//jdiv[@class='hoverArea__cMvXG']")
     private WebElement sendMessage;
