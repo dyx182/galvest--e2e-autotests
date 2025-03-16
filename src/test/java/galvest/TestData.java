@@ -16,6 +16,8 @@ public class TestData {
 
     public static final String COMMENT = "Тестовый комментарий";
 
+    public static final int INDEX = 13;
+
     private TestData() {
         throw new UnsupportedOperationException("This is a constants class and cannot be instantiated");
     }

@@ -10,10 +10,17 @@ import java.util.List;
 public class CatalogElement {
 
     @FindBy(xpath = "//a[@class='button buy to_basket']")
-    List<WebElement> btnAddToBasket;
+    private List<WebElement> btnAddToBasket;
 
-    WebDriver driver;
-    int index;
+    @FindBy(xpath = "//li/div[starts-with(@class,'product')]")
+    private List<WebElement> element;
+
+    @FindBy(xpath = "//li//span[@class='product_name']")
+    private List<WebElement> titleElement;
+
+    private WebDriver driver;
+    private int index;
+    private List<String> textElements;
 
     public CatalogElement(WebDriver driver, int index) {
         this.driver = driver;
@@ -21,8 +28,26 @@ public class CatalogElement {
         PageFactory.initElements(driver, this);
     }
 
+    public CatalogElement(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
     public void addElement() {
         btnAddToBasket.get(index).click();
     }
 
+    public List<WebElement> getTitleElement() {
+        return titleElement;
+    }
+    //текст элементов
+    public List<String> getTextElements() {
+       return textElements = getTitleElement().stream()
+                .map(WebElement::getText)
+                .toList();
+    }
+    //текст элемента
+    public String getTextTitleElement() {
+        return titleElement.get(index).getText();
+    }
 }

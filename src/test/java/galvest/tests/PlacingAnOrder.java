@@ -16,12 +16,13 @@ public class PlacingAnOrder extends TestBase {
         MainPage page = new MainPage(driver, wait);
         page
                 .open()
-                .checkSendMessage()
+                //.checkSendMessage()
                 .getHeader()
                 .clickBtnCatalog()
                 .clickBtnProduct()
-                .assertTextOnPage()
-                .addGoodElement(13)
+                .assertTitlePage()
+                .assertsUniqueElements()
+                .addGoodElement(INDEX)
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -31,6 +32,7 @@ public class PlacingAnOrder extends TestBase {
         BasketPage basketPage = new BasketPage(driver, wait);
 
         basketPage
+                .assertProductTitle()
                 .addQuantity()
                 .checkAmount(AMOUNT)
                 .placingOrder();

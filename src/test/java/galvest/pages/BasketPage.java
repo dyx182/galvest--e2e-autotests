@@ -1,12 +1,15 @@
 package galvest.pages;
 
 import galvest.pages.base_pages.BasePage;
+import galvest.pages.elements.CatalogElement;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static galvest.pages.GlueCatalogPage.savedTitleText;
 
 public class BasketPage extends BasePage {
 
@@ -19,6 +22,9 @@ public class BasketPage extends BasePage {
 
     @FindBy(xpath = "//td[@class='price-show-401-0']")
     private WebElement amountText;
+
+    @FindBy(xpath = "//td/a[@class='product_link']")
+    private WebElement productTitle;
 
     private Header header = new Header(driver, wait);
 
@@ -45,4 +51,10 @@ public class BasketPage extends BasePage {
         Assertions.assertEquals(amountText.getText(), amount + ",00 р.", "Неверная сумма корзины");
         return this;
     }
+
+    public BasketPage assertProductTitle() {
+        Assertions.assertEquals(productTitle.getText(), savedTitleText);
+        return this;
+    }
+
 }
