@@ -7,7 +7,6 @@ public class BaseCatalogPage extends BasePage {
 
     CatalogElement catElements = new CatalogElement();
 
-
     public CatalogElement getCatalogElement(int index) {
         return new CatalogElement(index);
     }

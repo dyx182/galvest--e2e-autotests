@@ -1,21 +1,29 @@
 package galvest;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 
 
 public class TestBase {
 
-
+    @BeforeAll
+    public static void setUp() {
+        Configuration.browser = "chrome";
+        //System.setProperty("webdriver.chrome.driver", "путь/к/драйверу");
+        Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 10000; // 10 секунд
+        Configuration.browser = "chrome";
+    }
 
     @BeforeEach
-    public void setUp() {
-        System.setProperty("WebDriver.chrome.driver", "drivers\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        options.addArguments("--disable-popup-blocking");
-
+    public void setUpTest() {
+        Configuration.headless = true; // без GUI
+        Configuration.holdBrowserOpen = true; // не закрывать браузер после теста
+        Configuration.screenshots = false; // отключить скриншоты при падении
+        Configuration.reportsFolder = "target/selenide-reports";
     }
 
 

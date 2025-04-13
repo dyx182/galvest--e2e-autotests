@@ -1,49 +1,42 @@
 package galvest.pages.elements;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.openqa.selenium.WebDriver;
+
+import com.codeborne.selenide.ElementsCollection;
+import lombok.Getter;
+import lombok.Setter;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.codeborne.selenide.Selenide.$$x;
+
+@Getter
+@Setter
 public class CatalogElement {
 
-    @FindBy(xpath = "//a[@class='button buy to_basket']")
-    private List<WebElement> btnAddToBasket;
+    private final ElementsCollection btnAddToBasket = $$x("//a[@class='button buy to_basket']");
 
-    @FindBy(xpath = "//li/div[starts-with(@class,'product')]")
-    private List<WebElement> element;
+    private final ElementsCollection element = $$x("//li/div[starts-with(@class,'product')]");
 
-    @FindBy(xpath = "//li//span[@class='product_name']")
-    private List<WebElement> titleElement;
+    private final ElementsCollection titleElement = $$x("//li//span[@class='product_name']");
 
-    private WebDriver driver;
+
     private int index;
     private List<String> textElements;
 
-    public CatalogElement(WebDriver driver, int index) {
-        this.driver = driver;
+    public CatalogElement(int index) {
         this.index = index;
-        PageFactory.initElements(driver, this);
     }
 
-    public CatalogElement(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public CatalogElement() {
     }
 
     public void addElement() {
         btnAddToBasket.get(index).click();
     }
 
-    public List<WebElement> getTitleElement() {
-        return titleElement;
-    }
+
     //текст элементов
     public List<String> getTextElements() {
        return textElements = getTitleElement().stream()
