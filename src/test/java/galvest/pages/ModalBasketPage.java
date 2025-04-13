@@ -2,7 +2,7 @@ package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
 
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -19,7 +19,6 @@ public class ModalBasketPage extends BasePage {
     }
 
     public ModalBasketPage clickButtonBasket() {
-        wait.until(ExpectedConditions.visibilityOf(btnGoToBasket));
         btnGoToBasket.click();
         return this;
     }

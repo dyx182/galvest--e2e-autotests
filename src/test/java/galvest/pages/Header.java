@@ -3,10 +3,10 @@ package galvest.pages;
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -44,6 +44,8 @@ public class Header extends BasePage {
     public Header checkCounter() {
         wait.until(ExpectedConditions.visibilityOf(counterBasket));
         Assertions.assertEquals(counterBasket.getText(), "1", "Товар не добавился в корзину");
+
+        counterBasket.shouldBe(visible).shouldHave(text("1"));
         return this;
     }
 

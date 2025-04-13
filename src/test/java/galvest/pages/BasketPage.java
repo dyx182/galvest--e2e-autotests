@@ -2,16 +2,18 @@ package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
-import lombok.Getter;
+
 import org.junit.jupiter.api.Assertions;
 
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static galvest.pages.GlueCatalogPage.savedTitleText;
 
-@Getter
+
 public class BasketPage extends BasePage {
 
     //Кнопка оформить заказ
@@ -47,7 +49,7 @@ public class BasketPage extends BasePage {
     }
 
     public BasketPage assertProductTitle() {
-        Assertions.assertEquals(productTitle.getText(), savedTitleText);
+        productTitle.shouldHave(text(savedTitleText), Duration.ofSeconds(10));
         return this;
     }
 

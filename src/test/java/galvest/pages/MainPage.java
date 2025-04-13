@@ -10,7 +10,7 @@ public class MainPage extends BasePage {
 
     private SelenideElement btnCatOne = $("a.cat1 span");
 
-    private Header header = new Header(driver, wait);
+    private Header header = new Header();
 
     public MainPage() {
         super();

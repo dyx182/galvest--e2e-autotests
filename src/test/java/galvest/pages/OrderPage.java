@@ -2,9 +2,7 @@ package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -33,9 +31,7 @@ public class OrderPage extends BasePage {
     private final SelenideElement btnSendApplication = $x("//form/div[3]/button");
 
 
-    public OrderPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-        PageFactory.initElements(driver, this);
+    public OrderPage() {
     }
 
     public OrderPage checkAndSetindividualType(String userType) {

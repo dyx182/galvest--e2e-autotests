@@ -2,8 +2,7 @@ package galvest.pages.elements;
 
 
 import com.codeborne.selenide.ElementsCollection;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -11,8 +10,7 @@ import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.$$x;
 
-@Getter
-@Setter
+
 public class CatalogElement {
 
     private final ElementsCollection btnAddToBasket = $$x("//a[@class='button buy to_basket']");
@@ -21,6 +19,9 @@ public class CatalogElement {
 
     private final ElementsCollection titleElement = $$x("//li//span[@class='product_name']");
 
+    public ElementsCollection getTitleElement() {
+        return titleElement;
+    }
 
     private int index;
     private List<String> textElements;
