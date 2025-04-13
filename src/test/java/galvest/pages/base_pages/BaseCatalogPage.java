@@ -2,7 +2,6 @@ package galvest.pages.base_pages;
 
 import galvest.pages.elements.CatalogElement;
 
-
 public class BaseCatalogPage extends BasePage {
 
     CatalogElement catElements = new CatalogElement();

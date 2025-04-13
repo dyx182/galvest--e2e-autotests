@@ -11,6 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
 
 
@@ -30,8 +33,7 @@ public class GlueCatalogPage extends BaseCatalogPage {
     }
 
     public GlueCatalogPage assertTitlePage() {
-        wait.until(ExpectedConditions.visibilityOf(titlePageText));
-        Assertions.assertEquals(titlePageText.getText(), "Клеи", "Произошел неверный переход");
+        titlePageText.shouldHave(text("Клеи"), Duration.ofSeconds(5));
         return this;
     }
     //Добавление элемента в корзину и получение его названия

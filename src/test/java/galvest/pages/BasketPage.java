@@ -2,18 +2,16 @@ package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
-import galvest.pages.elements.CatalogElement;
+import lombok.Getter;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static galvest.pages.GlueCatalogPage.savedTitleText;
 
+@Getter
 public class BasketPage extends BasePage {
 
     //Кнопка оформить заказ
@@ -25,11 +23,8 @@ public class BasketPage extends BasePage {
 
     private final SelenideElement productTitle = $x("//td/a[@class='product_link']");
 
-    private Header header = new Header();
+    private final Header header = new Header();
 
-    public Header getHeader() {
-        return header;
-    }
 
     public BasketPage() {
         super();
@@ -46,7 +41,8 @@ public class BasketPage extends BasePage {
     }
 
     public BasketPage checkAmount(String amount) {
-        Assertions.assertEquals(amountText.getText(), amount + ",00 р.", "Неверная сумма корзины");
+        String fullText = amount + ",00 р.";
+        amountText.shouldHave(text(fullText));
         return this;
     }
 
