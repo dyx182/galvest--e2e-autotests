@@ -1,25 +1,16 @@
 package galvest.pages.base_pages;
 
-import org.openqa.selenium.WebDriver;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 
 public class BasePage {
 
-    @FindBy(xpath = "//jdiv[@class='hoverArea__cMvXG']")
-    private WebElement sendMessage;
-
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    public BasePage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
-        PageFactory.initElements(driver, this);
-    }
+    private final SelenideElement sendMessage = $x("//jdiv[@class='hoverArea__cMvXG']");
 
     public WebElement getSendMessage() {
         return sendMessage;

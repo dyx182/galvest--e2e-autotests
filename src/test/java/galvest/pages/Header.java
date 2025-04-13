@@ -1,29 +1,26 @@
 package galvest.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class Header extends BasePage {
 
-    @FindBy(css = "a.catalog")
-    private WebElement btnCatalog;
+    private final SelenideElement btnCatalog = $("a.catalog");
 
-    @FindBy(css = "li a.cat8")
-    private WebElement btnCatalogCatEight;
+    private final SelenideElement btnCatalogCatEight = $("li a.cat8");
+    //TODO ЗАменить локатор
+    private final SelenideElement counterBasket = $x("//div[5]/span/span");
 
-    @FindBy(xpath = "//div[5]/span/span" )
-    private WebElement counterBasket;
+    private final SelenideElement iconBasket = $x("//span[@class='basket_link']");
 
-    @FindBy(xpath = "//span[@class='basket_link']")
-    private WebElement iconBasket;
-
-    ModalBasketPage modalBasketPage = new ModalBasketPage(driver, wait);
+    ModalBasketPage modalBasketPage = new ModalBasketPage();
 
     public ModalBasketPage getModalBasketPage() {
         return modalBasketPage;
@@ -37,12 +34,11 @@ public class Header extends BasePage {
     // Нажатие клеи в дропдауне
     public GlueCatalogPage clickBtnProduct() {
         btnCatalogCatEight.click();
-        return new GlueCatalogPage(driver, wait);
+        return new GlueCatalogPage();
     }
 
-    public Header(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-        PageFactory.initElements(driver, this);
+    public Header() {
+        super();
     }
 
     public Header checkCounter() {

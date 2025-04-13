@@ -7,15 +7,16 @@ import galvest.pages.OrderPage;
 import org.junit.jupiter.api.Test;
 
 
+
 import static galvest.TestData.*;
 
 public class PlacingAnOrder extends TestBase {
 
     @Test
     public void PlacingOrderTest() {
-        MainPage page = new MainPage(driver, wait);
+        MainPage page = new MainPage();
         page
-                .open()
+                .open(BASE_URL)
                 //.checkSendMessage()
                 .getHeader()
                 .clickBtnCatalog()
@@ -29,7 +30,7 @@ public class PlacingAnOrder extends TestBase {
                 .getModalBasketPage()
                 .clickButtonBasket();
 
-        BasketPage basketPage = new BasketPage(driver, wait);
+        BasketPage basketPage = new BasketPage();
 
         basketPage
                 .assertProductTitle()
@@ -37,7 +38,7 @@ public class PlacingAnOrder extends TestBase {
                 .checkAmount(AMOUNT)
                 .placingOrder();
 
-        OrderPage orderPage = new OrderPage(driver, wait);
+        OrderPage orderPage = new OrderPage();
 
         orderPage
                 .checkAndSetindividualType(USER_TYPE)

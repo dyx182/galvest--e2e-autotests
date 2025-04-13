@@ -1,5 +1,7 @@
 package galvest.pages;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BaseCatalogPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -9,20 +11,19 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 
 public class GlueCatalogPage extends BaseCatalogPage {
 
-    Header header = new Header(driver, wait);
+    Header header = new Header();
 
-    @FindBy(xpath = "//div[2]/ul/li[3]/span")
-    private WebElement titlePageText;
+    //TODO Заменить локатор
+    private final SelenideElement titlePageText = $x("//div[2]/ul/li[3]/span");
+
     //текст элемнета
     public static String savedTitleText;
 
-    public GlueCatalogPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-        PageFactory.initElements(driver, this);
-    }
 
     public Header getHeader() {
         return header;

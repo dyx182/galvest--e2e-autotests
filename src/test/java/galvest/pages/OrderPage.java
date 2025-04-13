@@ -1,46 +1,37 @@
 package galvest.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 public class OrderPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class='jq-selectbox__select']")
-    private WebElement userType;
+    private final SelenideElement userType = $x("//div[@class='jq-selectbox__select']");
 
-    @FindBy(xpath = "//div[@class='jq-selectbox__select-text']")
-    private WebElement userTypeText;
+    private final SelenideElement userTypeText = $x("//div[@class='jq-selectbox__select-text']");
 
-    @FindBy(xpath = "//li[(@data-jqfs-class='phys')]")
-    private WebElement individualType;
+    private final SelenideElement individualType = $x("//li[(@data-jqfs-class='phys')]");
 
-    @FindBy(xpath = "//form/div[1]//div[1]/input")
-    private WebElement inputName;
+    private final SelenideElement inputName = $x("//form/div[1]//div[1]/input");
+    //TODO Поменять локатор
+    private final SelenideElement inputPhone = $x("//div[1]/div[2]/div[2]/input");
+    //TODO Поменять локатор
+    private final SelenideElement inputEmail = $x("//div[1]/div[2]/div[3]/input");
 
-    @FindBy(xpath = "//div[1]/div[2]/div[2]/input")
-    private WebElement inputPhone;
+    private final SelenideElement inputComment = $x("//textarea[@name='comment']");
 
-    @FindBy(xpath = "//div[1]/div[2]/div[3]/input")
-    private WebElement inputEmail;
+    private final SelenideElement cbPickUp = $x("//label[@for='order1']");
+    //TODO Поменять локатор
+    private final SelenideElement cbPersonalData = $x("//div//div[3]//label");
+    //TODO Поменять локатор
+    private final SelenideElement orderConfirmationText = $x("//div[2]/div/div/h4");
+    //TODO Поменять локатор
+    private final SelenideElement btnSendApplication = $x("//form/div[3]/button");
 
-    @FindBy(xpath = "//textarea[@name='comment']")
-    private WebElement inputComment;
-
-    @FindBy(xpath = "//label[@for='order1']")
-    private WebElement cbPickUp;
-
-    @FindBy(xpath = "//div//div[3]//label")
-    private WebElement cbPersonalData;
-
-    @FindBy(xpath = "//div[2]/div/div/h4")
-    private WebElement orderConfirmationText;
-
-    @FindBy(xpath = "//form/div[3]/button")
-    private WebElement btnSendApplication;
 
     public OrderPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);

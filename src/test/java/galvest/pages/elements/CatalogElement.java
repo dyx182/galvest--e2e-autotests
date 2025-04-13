@@ -1,11 +1,15 @@
 package galvest.pages.elements;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CatalogElement {
 
@@ -44,7 +48,7 @@ public class CatalogElement {
     public List<String> getTextElements() {
        return textElements = getTitleElement().stream()
                 .map(WebElement::getText)
-                .toList();
+                .collect(Collectors.toList());
     }
     //текст элемента
     public String getTextTitleElement() {
