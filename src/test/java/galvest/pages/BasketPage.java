@@ -1,41 +1,31 @@
 package galvest.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
-import galvest.pages.elements.CatalogElement;
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static galvest.pages.GlueCatalogPage.savedTitleText;
+
 
 public class BasketPage extends BasePage {
 
     //Кнопка оформить заказ
-    @FindBy(css = "#page_content>div>div.basket_buttons>a.button")
-    private WebElement BtnDesignOrder;
+    private final SelenideElement BtnDesignOrder = $("#page_content>div>div.basket_buttons>a.button");
 
-    @FindBy(xpath = "//span[@class='add']")
-    private WebElement addGood;
+    private final SelenideElement addGood = $x("(//a[@href='/order/'])[1]");
 
-    @FindBy(xpath = "//td[@class='price-show-401-0']")
-    private WebElement amountText;
+    private final SelenideElement amountText = $x("//td[@class='price-show-401-0']");
 
-    @FindBy(xpath = "//td/a[@class='product_link']")
-    private WebElement productTitle;
+    private final SelenideElement productTitle = $x("(//span[text()='Эпоксидный клей Adesilex PG4'])[1]");
 
-    private Header header = new Header(driver, wait);
+    private final SelenideElement addCount = $x("//span[@class='add']");
 
-    public Header getHeader() {
-        return header;
-    }
-
-    public BasketPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-        PageFactory.initElements(driver, this);
-    }
 
     public BasketPage addQuantity() {
         addGood.click();
@@ -48,13 +38,18 @@ public class BasketPage extends BasePage {
     }
 
     public BasketPage checkAmount(String amount) {
-        Assertions.assertEquals(amountText.getText(), amount + ",00 р.", "Неверная сумма корзины");
+        String fullText = amount + ",00 р.";
+        amountText.shouldHave(text(fullText));
         return this;
     }
 
     public BasketPage assertProductTitle() {
-        Assertions.assertEquals(productTitle.getText(), savedTitleText);
+        productTitle.shouldHave(text(savedTitleText), Duration.ofSeconds(10));
         return this;
     }
 
+    public BasketPage addCountGood() {
+        addCount.click();
+        return this;
+    }
 }

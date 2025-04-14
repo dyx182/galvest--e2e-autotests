@@ -1,41 +1,34 @@
 package galvest;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+
 
 public class TestBase {
 
-
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    @BeforeAll
+    public static void setUp() {
+        Configuration.browser = "chrome";
+        //System.setProperty("webdriver.chrome.driver", "путь/к/драйверу");
+        Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 10000; // 10 секунд
+        Configuration.browser = "chrome";
+    }
 
     @BeforeEach
-    public void setUp() {
-        System.setProperty("WebDriver.chrome.driver", "drivers\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        options.addArguments("--disable-popup-blocking");
-
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    public void setUpTest() {
+        Configuration.headless = false; // без GUI
+        Configuration.holdBrowserOpen = true; // не закрывать браузер после теста
+        Configuration.screenshots = false; // отключить скриншоты при падении
+        Configuration.reportsFolder = "target/selenide-reports";
     }
 
 
     @AfterEach
     public void tearDown() {
-        if (driver != null) {
-            driver.quit(); // Закрытие браузера
-        }
     }
 }
 
