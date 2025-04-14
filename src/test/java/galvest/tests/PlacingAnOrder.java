@@ -15,7 +15,7 @@ import static galvest.TestData.*;
 public class PlacingAnOrder extends TestBase {
     @Test
     public void placingOrderTest() {
-        // 1. Открытие каталога и добавление товара
+        //Открытие каталога и добавление товара
         GlueCatalogPage gluePage = MainPage.open(TestData.BASE_URL)
                 .getHeader()
                 .clickBtnCatalog()
@@ -24,12 +24,12 @@ public class PlacingAnOrder extends TestBase {
         gluePage.assertTitlePage()
                 .addGoodElement(TestData.INDEX);
 
-        // 2. Проверка корзины
+        //Проверка корзины
         gluePage.getHeader()
                 .checkCounter()
                 .linkToBasket();
 
-        // 3. Оформление заказа
+        //Оформление заказа
         BasketPage basketPage = new BasketPage();
         basketPage.assertProductTitle()
                 .addQuantity()
@@ -37,7 +37,7 @@ public class PlacingAnOrder extends TestBase {
                 .checkAmount(TestData.AMOUNT)
                 .placingOrder();
 
-        // 4. Заполнение данных
+        //Заполнение данных
         OrderPage orderPage = new OrderPage();
         orderPage.checkAndSetindividualType(TestData.USER_TYPE)
                 .setDeliveryOption()
