@@ -21,7 +21,7 @@ public class MainPage extends BasePage {
         return header;
     }
 
-    public MainPage open(String url) {
+    public static MainPage open(String url) {
         Selenide.open(url);
         return new MainPage();
     }

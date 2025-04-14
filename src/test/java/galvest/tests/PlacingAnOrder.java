@@ -1,6 +1,8 @@
 package galvest.tests;
 
 import galvest.TestBase;
+import galvest.TestData;
+import galvest.pages.GlueCatalogPage;
 import galvest.pages.MainPage;
 import galvest.pages.BasketPage;
 import galvest.pages.OrderPage;
@@ -11,42 +13,38 @@ import org.junit.jupiter.api.Test;
 import static galvest.TestData.*;
 
 public class PlacingAnOrder extends TestBase {
-
     @Test
-    public void PlacingOrderTest() {
-        MainPage page = new MainPage();
-        page
-                .open(BASE_URL)
-                //.checkSendMessage()
+    public void placingOrderTest() {
+        // 1. Открытие каталога и добавление товара
+        GlueCatalogPage gluePage = MainPage.open(TestData.BASE_URL)
                 .getHeader()
                 .clickBtnCatalog()
-                .clickBtnProduct()
-                .assertTitlePage()
-                .assertsUniqueElements()
-                .addGoodElement(INDEX)
-                .getHeader()
+                .clickBtnProduct();
+
+        gluePage.assertTitlePage()
+                .addGoodElement(TestData.INDEX);
+
+        // 2. Проверка корзины
+        gluePage.getHeader()
                 .checkCounter()
-                .linkToBasket()
-                .getModalBasketPage()
-                .clickButtonBasket();
+                .linkToBasket();
 
+        // 3. Оформление заказа
         BasketPage basketPage = new BasketPage();
-
-        basketPage
-                .assertProductTitle()
+        basketPage.assertProductTitle()
                 .addQuantity()
-                .checkAmount(AMOUNT)
+                .addCountGood()
+                .checkAmount(TestData.AMOUNT)
                 .placingOrder();
 
+        // 4. Заполнение данных
         OrderPage orderPage = new OrderPage();
-
-        orderPage
-                .checkAndSetindividualType(USER_TYPE)
+        orderPage.checkAndSetindividualType(TestData.USER_TYPE)
                 .setDeliveryOption()
-                .setInputName(USERNAME)
-                .setinputPhone(PHONE_NUMBER)
-                .setinputEmail(EMAIL)
-                .setComment(COMMENT)
+                .setInputName(TestData.USERNAME)
+                .setinputPhone(TestData.PHONE_NUMBER)
+                .setinputEmail(TestData.EMAIL)
+                .setComment(TestData.COMMENT)
                 .sendApplication()
                 .confirmOrder();
     }

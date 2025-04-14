@@ -18,18 +18,14 @@ public class BasketPage extends BasePage {
     //Кнопка оформить заказ
     private final SelenideElement BtnDesignOrder = $("#page_content>div>div.basket_buttons>a.button");
 
-    private final SelenideElement addGood = $x("//span[@class='add']");
+    private final SelenideElement addGood = $x("(//a[@href='/order/'])[1]");
 
     private final SelenideElement amountText = $x("//td[@class='price-show-401-0']");
 
-    private final SelenideElement productTitle = $x("//td/a[@class='product_link']");
+    private final SelenideElement productTitle = $x("(//span[text()='Эпоксидный клей Adesilex PG4'])[1]");
 
-    private final Header header = new Header();
+    private final SelenideElement addCount = $x("//span[@class='add']");
 
-
-    public BasketPage() {
-        super();
-    }
 
     public BasketPage addQuantity() {
         addGood.click();
@@ -49,6 +45,11 @@ public class BasketPage extends BasePage {
 
     public BasketPage assertProductTitle() {
         productTitle.shouldHave(text(savedTitleText), Duration.ofSeconds(10));
+        return this;
+    }
+
+    public BasketPage addCountGood() {
+        addCount.click();
         return this;
     }
 }
