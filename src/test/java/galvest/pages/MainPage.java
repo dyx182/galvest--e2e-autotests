@@ -1,6 +1,7 @@
 package galvest.pages;
 
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
 
@@ -21,7 +22,7 @@ public class MainPage extends BasePage {
     }
 
     public MainPage open(String url) {
-        open(url);
+        Selenide.open(url);
         return new MainPage();
     }
 

@@ -20,8 +20,8 @@ public class TestBase {
 
     @BeforeEach
     public void setUpTest() {
-        Configuration.headless = true; // без GUI
-        Configuration.holdBrowserOpen = true; // не закрывать браузер после теста
+        Configuration.headless = false; // без GUI
+        Configuration.holdBrowserOpen = false; // не закрывать браузер после теста
         Configuration.screenshots = false; // отключить скриншоты при падении
         Configuration.reportsFolder = "target/selenide-reports";
     }

@@ -3,7 +3,6 @@ package galvest.pages;
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
 
-import org.junit.jupiter.api.Assertions;
 
 
 import java.time.Duration;
@@ -52,5 +51,4 @@ public class BasketPage extends BasePage {
         productTitle.shouldHave(text(savedTitleText), Duration.ofSeconds(10));
         return this;
     }
-
 }

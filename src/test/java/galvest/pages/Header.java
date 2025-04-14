@@ -2,8 +2,8 @@ package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -13,11 +13,9 @@ import static com.codeborne.selenide.Selenide.$x;
 public class Header extends BasePage {
 
     private final SelenideElement btnCatalog = $("a.catalog");
-
     private final SelenideElement btnCatalogCatEight = $("li a.cat8");
     //TODO ЗАменить локатор
     private final SelenideElement counterBasket = $x("//div[5]/span/span");
-
     private final SelenideElement iconBasket = $x("//span[@class='basket_link']");
 
     ModalBasketPage modalBasketPage = new ModalBasketPage();
@@ -42,10 +40,7 @@ public class Header extends BasePage {
     }
 
     public Header checkCounter() {
-        wait.until(ExpectedConditions.visibilityOf(counterBasket));
-        Assertions.assertEquals(counterBasket.getText(), "1", "Товар не добавился в корзину");
-
-        counterBasket.shouldBe(visible).shouldHave(text("1"));
+        counterBasket.shouldBe(visible).shouldHave(text("1"), Duration.ofSeconds(10));
         return this;
     }
 

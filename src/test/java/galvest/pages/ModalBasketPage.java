@@ -22,5 +22,4 @@ public class ModalBasketPage extends BasePage {
         btnGoToBasket.click();
         return this;
     }
-
 }
