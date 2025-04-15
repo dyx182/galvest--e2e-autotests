@@ -4,6 +4,7 @@ package galvest.pages;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -20,7 +21,7 @@ public class MainPage extends BasePage {
     public Header getHeader() {
         return header;
     }
-
+    @Step("Открытие главной страницы")
     public static MainPage open(String url) {
         Selenide.open(url);
         return new MainPage();

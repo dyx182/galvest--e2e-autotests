@@ -3,6 +3,7 @@ package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BaseCatalogPage;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 
 
@@ -27,18 +28,18 @@ public class GlueCatalogPage extends BaseCatalogPage {
         return header;
     }
 
+    @Step("Проверка заголовка страницы")
     public GlueCatalogPage assertTitlePage() {
         titlePageText.shouldHave(text("Клеи"), Duration.ofSeconds(5));
         return this;
     }
-    //Добавление элемента в корзину и получение его названия
+    @Step("Добавление элемента в корзину и получение его названия")
     public GlueCatalogPage addGoodElement(int index) {
         getCatalogElement(index).addElement();
         savedTitleText = getCatalogElement(index).getTextTitleElement();
         return this;
     }
-
-    //Проверка кол-ва элементов
+    @Step("Првоерка количества элементов")
     public GlueCatalogPage assertsUniqueElements() {
         Assertions.assertTrue(checkingTheTUiquenessOfElements());
         return this;

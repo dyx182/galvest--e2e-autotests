@@ -1,7 +1,7 @@
 package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import galvest.pages.base_pages.BasePage;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 
@@ -14,7 +14,7 @@ public class Header {
 
     private final SelenideElement btnCatalog = $("a.catalog");
     private final SelenideElement btnCatalogCatEight = $("li a.cat8");
-    //TODO ЗАменить локатор
+    //TODO Заменить локатор
     private final SelenideElement counterBasket = $x("//div[5]/span/span");
     private final SelenideElement iconBasket = $x("//span[@class='basket_link']");
 
@@ -24,26 +24,23 @@ public class Header {
         return modalBasketPage;
     }
 
-    // Нажатие кнопки Каталог товаров
+    @Step("Нажатие кнопки Каталог товаров")
     public Header clickBtnCatalog(){
         btnCatalog.click();
         return this;
     }
-    // Нажатие клеи в дропдауне
+    @Step("Нажатие кнопки 'Клеи' в выпадающем списке")
     public GlueCatalogPage clickBtnProduct() {
         btnCatalogCatEight.click();
         return new GlueCatalogPage();
     }
 
-    public Header() {
-        super();
-    }
-
+    @Step("Нажатие кнопки корзины")
     public Header checkCounter() {
         counterBasket.shouldBe(visible).shouldHave(text("1"), Duration.ofSeconds(10));
         return this;
     }
-
+    @Step("Нажатие кнопки 'Корзина'")
     public Header linkToBasket() {
         iconBasket.click();
         return this;
