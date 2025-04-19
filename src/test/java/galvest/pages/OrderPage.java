@@ -15,19 +15,19 @@ public class OrderPage extends BasePage {
 
     private final SelenideElement individualType = $x("//li[(@data-jqfs-class='phys')]");
 
-    private final SelenideElement inputName = $x("//form/div[1]//div[1]/input");
-    //TODO Поменять локатор
-    private final SelenideElement inputPhone = $x("//div[1]/div[2]/div[2]/input");
-    //TODO Поменять локатор
-    private final SelenideElement inputEmail = $x("//div[1]/div[2]/div[3]/input");
+    private final SelenideElement inputName = $x("//input[@placeholder='Введите ваше ФИО'][@required]");
+
+    private final SelenideElement inputPhone = $x("//input[@placeholder='Введите ваш телефон']");
+
+    private final SelenideElement inputEmail = $x("//input[@placeholder='Введите ваш e-mail']");
 
     private final SelenideElement inputComment = $x("//textarea[@name='comment']");
 
     private final SelenideElement cbPickUp = $x("//label[@for='order1']");
-    //TODO Поменять локатор
-    private final SelenideElement cbPersonalData = $x("//div//div[3]//label");
-    //TODO Поменять локатор
-    private final SelenideElement orderConfirmationText = $x("//div[2]/div/div/h4");
+
+    private final SelenideElement cbPersonalData = $x("(//label[@for='form_callback_check'])[1]");
+
+    private final SelenideElement orderConfirmationText = $x("(//div/h4)[1]");
 
     private final SelenideElement btnSendApplication = $x("(//button[contains(text(), 'отправить заявку')])[1]");
 

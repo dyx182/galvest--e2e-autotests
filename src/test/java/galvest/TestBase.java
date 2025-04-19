@@ -32,7 +32,6 @@ public class TestBase {
         Configuration.reportsFolder = "target/selenide-reports";
     }
 
-
     @AfterEach
     public void tearDown() {
     }

@@ -15,13 +15,11 @@ import static galvest.pages.GlueCatalogPage.savedTitleText;
 
 public class BasketPage extends BasePage {
 
-    //Кнопка оформить заказ
     private final SelenideElement BtnDesignOrder = $("#page_content>div>div.basket_buttons>a.button");
 
     private final SelenideElement amountText = $x("//td[@class='price-show-401-0']");
 
     private final SelenideElement addCount = $x("//span[@class='add']");
-
 
     @Step("Нажатие кнопки 'Оформить заказ'")
     public BasketPage placingOrder() {

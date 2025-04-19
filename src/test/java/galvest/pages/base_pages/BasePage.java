@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class BasePage {
 
     private final SelenideElement sendMessage = $x("//jdiv[@class='hoverArea__cMvXG']");
+
     @Step("Диалоговое окно чата")
     public SelenideElement getSendMessage() {
         return sendMessage;

@@ -23,9 +23,11 @@ public class PlacingAnOrder extends TestBase {
                 .clickBtnProduct();
 
         gluePage.assertTitlePage()
-                .addGoodElement(TestData.INDEX);
+                .checkingTheTUiquenessOfElements();
 
-        gluePage.getHeader()
+
+        gluePage.addGoodElement(TestData.INDEX)
+                .getHeader()
                 .checkCounter()
                 .linkToBasket()
                 .getModalBasketPage()

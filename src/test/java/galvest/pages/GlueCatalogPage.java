@@ -15,14 +15,11 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class GlueCatalogPage extends BaseCatalogPage {
 
+    private final SelenideElement titlePageText = $x("//span[text()='Клеи']");
+
     Header header = new Header();
 
-    //TODO Заменить локатор
-    private final SelenideElement titlePageText = $x("//div[2]/ul/li[3]/span");
-
-    //текст элемнета
     public static String savedTitleText;
-
 
     public Header getHeader() {
         return header;
@@ -37,11 +34,6 @@ public class GlueCatalogPage extends BaseCatalogPage {
     public GlueCatalogPage addGoodElement(int index) {
         getCatalogElement(index).addElement();
         savedTitleText = getCatalogElement(index).getTextTitleElement();
-        return this;
-    }
-    @Step("Првоерка количества элементов")
-    public GlueCatalogPage assertsUniqueElements() {
-        Assertions.assertTrue(checkingTheTUiquenessOfElements());
         return this;
     }
 }

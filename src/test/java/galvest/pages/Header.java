@@ -13,9 +13,11 @@ import static com.codeborne.selenide.Selenide.$x;
 public class Header {
 
     private final SelenideElement btnCatalog = $("a.catalog");
+
     private final SelenideElement btnCatalogCatEight = $("li a.cat8");
-    //TODO Заменить локатор
-    private final SelenideElement counterBasket = $x("//div[5]/span/span");
+
+    private final SelenideElement counterBasket = $x("//span[@class='basket_link']/span");
+
     private final SelenideElement iconBasket = $x("//span[@class='basket_link']");
 
     ModalBasketPage modalBasketPage = new ModalBasketPage();

@@ -1,6 +1,7 @@
 package galvest.pages.base_pages;
 
 import galvest.pages.elements.CatalogElement;
+import io.qameta.allure.Step;
 
 public class BaseCatalogPage extends BasePage {
 
@@ -10,10 +11,13 @@ public class BaseCatalogPage extends BasePage {
         return new CatalogElement(index);
     }
 
-    public boolean checkingTheTUiquenessOfElements() {
-         boolean checkUnique = catElements.getTextElements().stream()
+    @Step("Првоерка количества элементов")
+    public void checkingTheTUiquenessOfElements() {
+        boolean checkUnique = catElements.getTextElements().stream()
                 .distinct()
                 .count() == catElements.getTextElements().size();
-         return checkUnique;
+        if (!checkUnique) {
+            System.out.println("Необходимо проверить каталог");
+        }
     }
 }
