@@ -2,6 +2,17 @@ package galvest;
 
 public class TestData {
 
+    public enum ProductIndex {
+        EPOXY_GLUE(13),
+        SEALANT(5);
+
+        private final int index;
+
+        ProductIndex(int index) { this.index = index; }
+
+        public int getIndex() { return index; }
+    }
+
     public static final String BASE_URL = "https://galvest.ru/";
 
     public static final String PHONE_NUMBER = "79998887765";
@@ -15,8 +26,6 @@ public class TestData {
     public static final String USER_TYPE = "Физическое лицо";
 
     public static final String COMMENT = "Тестовый комментарий";
-
-    public static final int INDEX = 13;
 
     private TestData() {
         throw new UnsupportedOperationException("This is a constants class and cannot be instantiated");

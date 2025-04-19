@@ -10,7 +10,7 @@ import java.time.Duration;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
-import static galvest.pages.GlueCatalogPage.savedTitleText;
+
 
 
 public class BasketPage extends BasePage {

@@ -11,13 +11,17 @@ public class BaseCatalogPage extends BasePage {
         return new CatalogElement(index);
     }
 
-    @Step("Првоерка количества элементов")
-    public void checkingTheTUiquenessOfElements() {
-        boolean checkUnique = catElements.getTextElements().stream()
+    public boolean areElementsUnique() {
+        return catElements.getTextElements().stream()
                 .distinct()
                 .count() == catElements.getTextElements().size();
-        if (!checkUnique) {
-            System.out.println("Необходимо проверить каталог");
+    }
+
+    @Step("Првоерка уникальности элементов")
+    public BaseCatalogPage checkElementsUniqueness() {
+        if (!areElementsUnique()) {
+            throw new AssertionError("Элементы в каталоге не уникальны!");
         }
+        return this;
     }
 }

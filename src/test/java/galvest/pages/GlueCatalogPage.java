@@ -19,7 +19,11 @@ public class GlueCatalogPage extends BaseCatalogPage {
 
     Header header = new Header();
 
-    public static String savedTitleText;
+    private String savedTitleText;
+
+    public String getSavedTitleText() {
+        return savedTitleText;
+    }
 
     public Header getHeader() {
         return header;

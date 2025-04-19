@@ -6,9 +6,10 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
-import static galvest.pages.GlueCatalogPage.savedTitleText;
+
 
 public class ModalBasketPage {
 
@@ -17,8 +18,8 @@ public class ModalBasketPage {
     private final SelenideElement productTitle = $x("(//span[text()='Эпоксидный клей Adesilex PG4'])[1]");
 
     @Step("Проверка товара")
-    public ModalBasketPage assertProductTitle() {
-        productTitle.shouldHave(text(savedTitleText), Duration.ofSeconds(5));
+    public ModalBasketPage assertProductTitle(String expectedTitle) {
+        productTitle.shouldHave(exactText((expectedTitle)), Duration.ofSeconds(5));
         return this;
     }
     @Step("Нажатие кнопки 'Перейти в корзину'")

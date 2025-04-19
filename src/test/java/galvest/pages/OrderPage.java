@@ -31,9 +31,6 @@ public class OrderPage extends BasePage {
 
     private final SelenideElement btnSendApplication = $x("(//button[contains(text(), 'отправить заявку')])[1]");
 
-
-    public OrderPage() {
-    }
     @Step("Проверка и выбор опции ФЛ в дд 'Тип пользователя'")
     public OrderPage checkAndSetindividualType(String userType) {
         while (!userType.equals(userTypeText.getText())) {

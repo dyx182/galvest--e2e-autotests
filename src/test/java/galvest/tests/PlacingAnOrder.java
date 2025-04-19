@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 
 
+
 public class PlacingAnOrder extends TestBase {
 
     @Test
@@ -23,15 +24,15 @@ public class PlacingAnOrder extends TestBase {
                 .clickBtnProduct();
 
         gluePage.assertTitlePage()
-                .checkingTheTUiquenessOfElements();
+                .checkElementsUniqueness();
 
 
-        gluePage.addGoodElement(TestData.INDEX)
+        gluePage.addGoodElement(TestData.ProductIndex.EPOXY_GLUE.getIndex())
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
                 .getModalBasketPage()
-                .assertProductTitle()
+                .assertProductTitle(gluePage.getSavedTitleText())
                 .clickButtonBasket();
 
         BasketPage basketPage = new BasketPage();
