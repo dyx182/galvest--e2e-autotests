@@ -58,7 +58,7 @@ public class PlacingAnOrder extends TestBase {
         anchorPage
                 .openFilter()
                 .brandSelection(1)
-                .selectCountries("Швейцария") //TODO переработать селекты, как первый
+                .selectCountries(1) //TODO переработать селекты, как первый
                 .baseSelection("Винилэфир")
                 .temperatureSelection("до +5℃")
                 .clickConfirmBtn()

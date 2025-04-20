@@ -74,7 +74,7 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
     public T brandSelection(int index) {
         $x("//div[@class='SumoSelect sumo_brand']").click();
         for (int i = 1; i < 5; i++) {
-            $x("(//p[@title=' Производитель']/following-sibling::div//i)["+ i +"]")
+            $x("(//div[@class='SumoSelect sumo_brand open']/p[@class='CaptionCont SelectBox']/following-sibling::div//i)["+ i +"]")
                     .click();
         }
         btnReset.click();
@@ -84,8 +84,17 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
         return (T) this;
     }
 
-    @Step("Выбор страны производителя: {countries}")
-    public T selectCountries(String... countries) {
+    @Step("Выбор страны производителя: {index}")
+    public T selectCountries(int index) {
+        $x("//div[@class='SumoSelect sumo_3']").click();
+        for (int i = 1; i < 4; i++) {
+            $x("(//p[@title=' Страна производитель']/following-sibling::div//i)["+ i +"]")
+                    .click();
+        }
+        btnReset.click();
+
+        $x("(//p[@title=' Страна производитель']/following-sibling::div//i)["+ index +"]")
+                .click();
         return (T) this;
     }
 
