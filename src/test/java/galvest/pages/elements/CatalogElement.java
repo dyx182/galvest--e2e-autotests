@@ -1,11 +1,9 @@
 package galvest.pages.elements;
 
-
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.$$x;
 
 
@@ -13,7 +11,7 @@ public class CatalogElement {
 
     private final ElementsCollection btnAddToBasket = $$x("//a[@class='button buy to_basket']");
 
-    //private final ElementsCollection element = $$x("//li/div[starts-with(@class,'product')]");
+    private final ElementsCollection element = $$x("//li/div[starts-with(@class,'product item_')]");
 
     private final ElementsCollection titleElement = $$x("//li//span[@class='product_name']");
 
@@ -32,6 +30,10 @@ public class CatalogElement {
 
     public List<String> getTextElements() {
        return  titleElement.texts();
+    }
+
+    public ElementsCollection getElements() {
+       return element;
     }
 
     public String getTextTitleElement() {

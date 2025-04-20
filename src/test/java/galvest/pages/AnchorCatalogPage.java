@@ -9,14 +9,14 @@ import java.time.Duration;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class GlueCatalogPage extends BaseCatalogPage<GlueCatalogPage> {
+public class AnchorCatalogPage extends BaseCatalogPage<AnchorCatalogPage> {
 
-    private final SelenideElement titlePageText = $x("//span[text()='Клеи']");
+    private final SelenideElement titlePageText = $x("//span[text()='Анкерные составы']");
 
     @Step("Проверка заголовка страницы")
     @Override
-    public GlueCatalogPage assertTitlePage() {
-        titlePageText.shouldHave(text("Клеи"), Duration.ofSeconds(5));
+    public AnchorCatalogPage assertTitlePage() {
+        titlePageText.shouldHave(text("Анкерные составы"), Duration.ofSeconds(10));
         return this;
     }
 

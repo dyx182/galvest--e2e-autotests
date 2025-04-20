@@ -2,13 +2,9 @@ package galvest.tests;
 
 import galvest.TestBase;
 import galvest.TestData;
-import galvest.pages.GlueCatalogPage;
-import galvest.pages.MainPage;
-import galvest.pages.BasketPage;
-import galvest.pages.OrderPage;
+import galvest.pages.*;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
-
 
 
 
@@ -50,5 +46,34 @@ public class PlacingAnOrder extends TestBase {
                 .sendApplication()
                 .confirmOrder();
     }
+
+    @Test
+    @Story("Оформление коммерческого предложения")
+    public void commercialOffer() {
+
+        AnchorCatalogPage anchorPage = MainPage.open(TestData.BASE_URL)
+                .clickButtonProduct(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
+                .assertTitlePage();
+
+        anchorPage
+                .openFilter()
+                .brandSelection(1)
+                .selectCountries("Швейцария") //TODO переработать селекты, как первый
+                .baseSelection("Винилэфир")
+                .temperatureSelection("до +5℃")
+                .clickConfirmBtn()
+                .checkingResult(1);
+
+        anchorPage
+                .addGoodElement(1)
+                .getHeader()
+                .checkCounter()
+                .linkToBasket()
+                .getModalBasketPage()
+                .clickButtonBasket();
+
+    }
+
+
 }
 
