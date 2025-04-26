@@ -7,7 +7,7 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -23,19 +23,19 @@ public class BasketPage extends BasePage {
 
     @Step("Нажатие кнопки 'Оформить заказ'")
     public BasketPage placingOrder() {
-        BtnDesignOrder.click();
+        BtnDesignOrder.should(enabled).click();
         return this;
     }
     @Step("Проверка стоимости")
     public BasketPage checkAmount(String amount) {
         String fullText = amount + ",00 р.";
-        amountText.shouldHave(text(fullText));
+        amountText.should(visible).shouldHave(text(fullText));
         return this;
     }
 
     @Step("Добавление кол-ва товара")
     public BasketPage addCountGood() {
-        addCount.click();
+        addCount.should(enabled).click();
         return this;
     }
 }

@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class GlueCatalogPage extends BaseCatalogPage<GlueCatalogPage> {
@@ -16,7 +17,7 @@ public class GlueCatalogPage extends BaseCatalogPage<GlueCatalogPage> {
     @Step("Проверка заголовка страницы")
     @Override
     public GlueCatalogPage assertTitlePage() {
-        titlePageText.shouldHave(text("Клеи"), Duration.ofSeconds(5));
+        titlePageText.should(visible).shouldHave(text("Клеи"), Duration.ofSeconds(5));
         return this;
     }
 

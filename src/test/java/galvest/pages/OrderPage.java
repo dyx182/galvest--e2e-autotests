@@ -5,6 +5,8 @@ import galvest.pages.base_pages.BasePage;
 import io.qameta.allure.Step;
 
 
+import static com.codeborne.selenide.Condition.enabled;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class OrderPage extends BasePage {
@@ -35,7 +37,7 @@ public class OrderPage extends BasePage {
     public OrderPage checkAndSetindividualType(String userType) {
         while (!userType.equals(userTypeText.getText())) {
             this.userType.click();
-            individualType.click();
+            individualType.should(enabled).click();
         }
         return this;
     }
@@ -73,7 +75,7 @@ public class OrderPage extends BasePage {
     }
     @Step("Нажатие кнопки 'Отправить заявку'")
     public OrderPage sendApplication() {
-        btnSendApplication.click();
+        btnSendApplication.should(enabled).click();
         return this;
     }
 }

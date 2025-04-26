@@ -1,7 +1,6 @@
 package galvest.pages.elements;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 
 import java.util.List;
 import static com.codeborne.selenide.Selenide.$$x;
