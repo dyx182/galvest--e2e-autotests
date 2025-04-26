@@ -56,8 +56,6 @@ public class PlacingAnOrder extends TestBase {
                 .clickButtonProduct(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
                 .assertTitlePage();
 
-        //проверка фильтра
-
         anchorPage
                 .openFilter()
                 .selectBrand("PCI")
@@ -68,7 +66,7 @@ public class PlacingAnOrder extends TestBase {
                 .selectType("Наливного типа")
                 .clickConfirmBtn()
                 .checkingResult(0)
-                        .resetFilters()
+                .resetFilters()
                 .selectBrand("BASF")
                 .selectCountry("Швейцария")
                 .selectBase("Винилэфир")
@@ -90,9 +88,8 @@ public class PlacingAnOrder extends TestBase {
                 .setInputCompany("Тестовая")
                 .setInputName(TestData.USERNAME)
                 .SetInputObjectName("Тестовый")
-                .sendCommercialOffer();
+                .sendCommercialOffer()
+                .DownloadCO();
     }
-
-
 }
 
