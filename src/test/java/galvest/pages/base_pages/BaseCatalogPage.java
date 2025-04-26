@@ -72,6 +72,7 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
 
     @Step("Выбор фильтра 'Производитель': {index}")
     public T brandSelection(int index) {
+        //TODO добавить цикл
         $x("//div[@class='SumoSelect sumo_brand']").click();
         for (int i = 1; i < 5; i++) {
             $x("(//div[@class='SumoSelect sumo_brand open']/p[@class='CaptionCont SelectBox']/following-sibling::div//i)["+ i +"]")
@@ -79,7 +80,7 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
         }
         btnReset.click();
 
-        $x("(//p[@title=' Производитель']/following-sibling::div//i)["+ index +"]")
+        $x("(//div[@class='SumoSelect sumo_brand open']/p[@class='CaptionCont SelectBox']/following-sibling::div//i)["+ index +"]")
                     .click();
         return (T) this;
     }
