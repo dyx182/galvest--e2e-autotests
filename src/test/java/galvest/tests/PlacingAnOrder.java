@@ -56,14 +56,23 @@ public class PlacingAnOrder extends TestBase {
                 .clickButtonProduct(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
                 .assertTitlePage();
 
+        //проверка фильтра
+
         anchorPage
                 .openFilter()
-                .brandSelection(1)
-                .selectCountries(1) //TODO переработать селекты, как первый
-                .baseSelection("Винилэфир")
-                .temperatureSelection("до +5℃")
+                .selectBrand("PCI")
+                .selectCountry("Швейцария")
+                .selectBase("Метакрилат")
+                .selectDiameter("1 мм.")
+                .selectTemperature("до +5℃")
+                .selectType("Наливного типа")
                 .clickConfirmBtn()
-                .checkingResult(1);
+                .checkingResult(0)
+                        .resetFilters()
+                .selectBrand("BASF")
+                .selectCountry("Швейцария")
+                .selectBase("Винилэфир")
+                .clickConfirmBtn();
 
         anchorPage
                 .addGoodElement(1)

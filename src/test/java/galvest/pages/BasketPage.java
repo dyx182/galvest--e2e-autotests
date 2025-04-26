@@ -23,7 +23,7 @@ public class BasketPage extends BasePage {
 
     @Step("Нажатие кнопки 'Оформить заказ'")
     public BasketPage placingOrder() {
-        BtnDesignOrder.should(enabled).click();
+        BtnDesignOrder.should(interactable).click();
         return this;
     }
     @Step("Проверка стоимости")
@@ -35,7 +35,7 @@ public class BasketPage extends BasePage {
 
     @Step("Добавление кол-ва товара")
     public BasketPage addCountGood() {
-        addCount.should(enabled).click();
+        addCount.should(interactable).click();
         return this;
     }
 }

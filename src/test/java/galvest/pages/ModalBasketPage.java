@@ -22,7 +22,7 @@ public class ModalBasketPage {
     }
     @Step("Нажатие кнопки 'Перейти в корзину'")
     public ModalBasketPage clickButtonBasket() {
-        btnGoToBasket.should(enabled).click();
+        btnGoToBasket.should(interactable).click();
         return this;
     }
 }

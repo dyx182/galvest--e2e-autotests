@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class AnchorCatalogPage extends BaseCatalogPage<AnchorCatalogPage> {
@@ -16,7 +17,7 @@ public class AnchorCatalogPage extends BaseCatalogPage<AnchorCatalogPage> {
     @Step("Проверка заголовка страницы")
     @Override
     public AnchorCatalogPage assertTitlePage() {
-        titlePageText.shouldHave(text("Анкерные составы"), Duration.ofSeconds(10));
+        titlePageText.should(visible).shouldHave(text("Анкерные составы"), Duration.ofSeconds(10));
         return this;
     }
 

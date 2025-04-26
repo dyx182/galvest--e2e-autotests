@@ -27,12 +27,12 @@ public class Header {
 
     @Step("Нажатие кнопки Каталог товаров")
     public Header clickBtnCatalog(){
-        btnCatalog.should(enabled).click();
+        btnCatalog.should(interactable).click();
         return this;
     }
     @Step("Нажатие кнопки 'Клеи' в выпадающем списке")
     public GlueCatalogPage clickBtnProduct() {
-        btnCatalogCatEight.should(enabled).click();
+        btnCatalogCatEight.should(interactable).click();
         return new GlueCatalogPage();
     }
 

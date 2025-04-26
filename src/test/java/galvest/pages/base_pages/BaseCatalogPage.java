@@ -1,10 +1,9 @@
 package galvest.pages.base_pages;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import galvest.pages.GlueCatalogPage;
 import galvest.pages.Header;
+import galvest.pages.component.ProductFilter;
 import galvest.pages.elements.CatalogElement;
 import io.qameta.allure.Step;
 
@@ -12,18 +11,12 @@ import io.qameta.allure.Step;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.files.DownloadActions.click;
+
 
 public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
 
 
-
     private final SelenideElement filterBtn = $x("//span[text()='Показать фильтр']");
-
-    private final SelenideElement btnConfirmFltr = $x("//input[@value='Применить']");
-
-    private final SelenideElement btnReset = $x("//a[@href='#']");
-
 
     private final SelenideElement negativeText = $x("//p[text()='По вашему запросу товаров не найдено, попробуйте смягчить условия поиска.']");
 
@@ -64,54 +57,15 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
     }
 
     @Step("Открытие фильтра")
-    public T openFilter() {
-        filterBtn.click();
-        return (T) this;
+    public ProductFilter openFilter() {
+        filterBtn.should(interactable).click();
+        return new ProductFilter();
     }
 
-
-    @Step("Выбор фильтра 'Производитель': {index}")
-    public T brandSelection(int index) {
-        //TODO добавить цикл
-        $x("//div[@class='SumoSelect sumo_brand']").click();
-        for (int i = 1; i < 5; i++) {
-            $x("(//div[@class='SumoSelect sumo_brand open']/p[@class='CaptionCont SelectBox']/following-sibling::div//i)["+ i +"]")
-                    .click();
-        }
-        btnReset.click();
-
-        $x("(//div[@class='SumoSelect sumo_brand open']/p[@class='CaptionCont SelectBox']/following-sibling::div//i)["+ index +"]")
-                    .click();
-        return (T) this;
-    }
-
-    @Step("Выбор страны производителя: {index}")
-    public T selectCountries(int index) {
-        $x("//div[@class='SumoSelect sumo_3']").click();
-        for (int i = 1; i < 4; i++) {
-            $x("(//p[@title=' Страна производитель']/following-sibling::div//i)["+ i +"]")
-                    .click();
-        }
-        btnReset.click();
-
-        $x("(//p[@title=' Страна производитель']/following-sibling::div//i)["+ index +"]")
-                .click();
-        return (T) this;
-    }
-
-    @Step("Выбор фильтра 'Основа'")
-    public T baseSelection (String baseName) {
-        return (T) this;
-    }
-
-    @Step("Выбор фильтра 'Температура'")
-    public T temperatureSelection (String temperatureName) {
-        return (T) this;
-    }
-
-    @Step("Нажатие кнопки 'Применить в фильтре'")
-    public T clickConfirmBtn() {
-        btnConfirmFltr.click();
+    @Step("Добавление элемента в корзину и получение его названия")
+    public T addGoodElement(int index) {
+        getCatalogElement(index).addElement();
+        savedTitleText = getCatalogElement(index).getTextTitleElement();
         return (T) this;
     }
 
@@ -130,14 +84,7 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
             }
         }
         System.out.println("Элементов найдено: " + catElements.getElements().size());
-        System.out.println("Текст 'не найдено' виден? " + negativeText.isDisplayed());
-        return (T) this;
-    }
-
-    @Step("Добавление элемента в корзину и получение его названия")
-    public T addGoodElement(int index) {
-        getCatalogElement(index).addElement();
-        savedTitleText = getCatalogElement(index).getTextTitleElement();
+        System.out.println("Текст 'не найдено' присутствует на странице " + negativeText.isDisplayed());
         return (T) this;
     }
 }
