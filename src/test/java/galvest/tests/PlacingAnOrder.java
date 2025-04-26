@@ -75,13 +75,22 @@ public class PlacingAnOrder extends TestBase {
                 .clickConfirmBtn();
 
         anchorPage
-                .addGoodElement(1)
+                .addGoodElement(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
                 .getModalBasketPage()
                 .clickButtonBasket();
 
+        BasketPage basketPage = new BasketPage();
+        basketPage
+                .checkAmount("2 318")
+                .clickCO()
+                .getCommercialOfferPage()
+                .setInputCompany("Тестовая")
+                .setInputName(TestData.USERNAME)
+                .SetInputObjectName("Тестовый")
+                .sendCommercialOffer();
     }
 
 

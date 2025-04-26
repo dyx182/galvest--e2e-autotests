@@ -8,7 +8,6 @@ import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 
-
 public class ModalBasketPage {
 
     private final SelenideElement btnGoToBasket = $x("//a[@class='button']");
