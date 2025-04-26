@@ -5,8 +5,7 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -28,12 +27,12 @@ public class Header {
 
     @Step("Нажатие кнопки Каталог товаров")
     public Header clickBtnCatalog(){
-        btnCatalog.click();
+        btnCatalog.should(enabled).click();
         return this;
     }
     @Step("Нажатие кнопки 'Клеи' в выпадающем списке")
     public GlueCatalogPage clickBtnProduct() {
-        btnCatalogCatEight.click();
+        btnCatalogCatEight.should(enabled).click();
         return new GlueCatalogPage();
     }
 
@@ -44,7 +43,7 @@ public class Header {
     }
     @Step("Нажатие кнопки 'Корзина'")
     public Header linkToBasket() {
-        iconBasket.click();
+        iconBasket.should(visible).click();
         return this;
     }
 }

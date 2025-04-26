@@ -1,15 +1,13 @@
 package galvest.pages;
 
-
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BaseCatalogPage;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
-
 
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 
@@ -31,7 +29,7 @@ public class GlueCatalogPage extends BaseCatalogPage {
 
     @Step("Проверка заголовка страницы")
     public GlueCatalogPage assertTitlePage() {
-        titlePageText.shouldHave(text("Клеи"), Duration.ofSeconds(5));
+        titlePageText.should(visible).shouldHave(text("Клеи"), Duration.ofSeconds(5));
         return this;
     }
     @Step("Добавление элемента в корзину и получение его названия")

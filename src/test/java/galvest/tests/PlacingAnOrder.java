@@ -9,9 +9,6 @@ import galvest.pages.OrderPage;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
-
-
-
 public class PlacingAnOrder extends TestBase {
 
     @Test

@@ -3,11 +3,9 @@ package galvest.pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 
 
@@ -19,12 +17,12 @@ public class ModalBasketPage {
 
     @Step("Проверка товара")
     public ModalBasketPage assertProductTitle(String expectedTitle) {
-        productTitle.shouldHave(exactText((expectedTitle)), Duration.ofSeconds(5));
+        productTitle.should(visible).shouldHave(exactText((expectedTitle)), Duration.ofSeconds(5));
         return this;
     }
     @Step("Нажатие кнопки 'Перейти в корзину'")
     public ModalBasketPage clickButtonBasket() {
-        btnGoToBasket.click();
+        btnGoToBasket.should(enabled).click();
         return this;
     }
 }
