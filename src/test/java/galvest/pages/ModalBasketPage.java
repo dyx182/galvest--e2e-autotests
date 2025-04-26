@@ -8,7 +8,6 @@ import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 
-
 public class ModalBasketPage {
 
     private final SelenideElement btnGoToBasket = $x("//a[@class='button']");
@@ -22,7 +21,7 @@ public class ModalBasketPage {
     }
     @Step("Нажатие кнопки 'Перейти в корзину'")
     public ModalBasketPage clickButtonBasket() {
-        btnGoToBasket.should(enabled).click();
+        btnGoToBasket.should(interactable).click();
         return this;
     }
 }

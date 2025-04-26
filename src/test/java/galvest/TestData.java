@@ -4,7 +4,7 @@ public class TestData {
 
     public enum ProductIndex {
         EPOXY_GLUE(13),
-        SEALANT(5);
+        ANCHOR_PAGE(0);
 
         private final int index;
 

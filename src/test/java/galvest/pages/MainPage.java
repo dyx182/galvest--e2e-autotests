@@ -4,6 +4,7 @@ package galvest.pages;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
+import galvest.pages.elements.MainPageElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -15,8 +16,10 @@ public class MainPage extends BasePage {
 
     private Header header = new Header();
 
-    public MainPage() {
-        super();
+    private MainPageElement element = new MainPageElement();
+
+    public MainPageElement getElement(int index) {
+        return new MainPageElement(index);
     }
 
     public Header getHeader() {
@@ -28,11 +31,11 @@ public class MainPage extends BasePage {
         return new MainPage();
     }
 
-//    // Нажатие анкерные составы на главной
-//    public MainPage clickButtonProductOne() {
-//        btnCatOne.click();
-//        return this;
-//    }
+    @Step("Выбор раздела на главной странице")
+    public AnchorCatalogPage clickButtonProduct(int index) {
+        getElement(index).chooseElement();
+        return new AnchorCatalogPage();
+    }
 
     public MainPage checkSendMessage() {
         getSendMessage().should(visible);

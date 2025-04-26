@@ -2,12 +2,12 @@ package galvest.tests;
 
 import galvest.TestBase;
 import galvest.TestData;
-import galvest.pages.GlueCatalogPage;
-import galvest.pages.MainPage;
-import galvest.pages.BasketPage;
-import galvest.pages.OrderPage;
+import galvest.pages.*;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
+
+
+
 
 public class PlacingAnOrder extends TestBase {
 
@@ -46,6 +46,50 @@ public class PlacingAnOrder extends TestBase {
                 .setComment(TestData.COMMENT)
                 .sendApplication()
                 .confirmOrder();
+    }
+
+    @Test
+    @Story("Оформление коммерческого предложения")
+    public void commercialOffer() {
+
+        AnchorCatalogPage anchorPage = MainPage.open(TestData.BASE_URL)
+                .clickButtonProduct(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
+                .assertTitlePage();
+
+        anchorPage
+                .openFilter()
+                .selectBrand("PCI")
+                .selectCountry("Швейцария")
+                .selectBase("Метакрилат")
+                .selectDiameter("1 мм.")
+                .selectTemperature("до +5℃")
+                .selectType("Наливного типа")
+                .clickConfirmBtn()
+                .checkingResult(0)
+                .resetFilters()
+                .selectBrand("BASF")
+                .selectCountry("Швейцария")
+                .selectBase("Винилэфир")
+                .clickConfirmBtn();
+
+        anchorPage
+                .addGoodElement(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
+                .getHeader()
+                .checkCounter()
+                .linkToBasket()
+                .getModalBasketPage()
+                .clickButtonBasket();
+
+        BasketPage basketPage = new BasketPage();
+        basketPage
+                .checkAmount("2 318")
+                .clickCO()
+                .getCommercialOfferPage()
+                .setInputCompany("Тестовая")
+                .setInputName(TestData.USERNAME)
+                .SetInputObjectName("Тестовый")
+                .sendCommercialOffer()
+                .DownloadCO();
     }
 }
 
