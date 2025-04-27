@@ -16,7 +16,7 @@ public class TestBase {
         Configuration.browser = "chrome";
         //System.setProperty("webdriver.chrome.driver", "путь/к/драйверу");
         Configuration.browserSize = "1920x1080";
-        Configuration.timeout = 10000; // 10 секунд
+        Configuration.timeout = 10000;
         Configuration.browser = "chrome";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
@@ -26,9 +26,9 @@ public class TestBase {
 
     @BeforeEach
     public void setUpTest() {
-        Configuration.headless = false; // без GUI
-        Configuration.holdBrowserOpen = false; // не закрывать браузер после теста
-        Configuration.screenshots = true; // отключить скриншоты при падении
+        Configuration.headless = false;
+        Configuration.holdBrowserOpen = false;
+        Configuration.screenshots = true;
         Configuration.reportsFolder = "target/selenide-reports";
     }
 

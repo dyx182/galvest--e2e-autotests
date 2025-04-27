@@ -2,10 +2,9 @@ package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
+import galvest.pages.component.ModalPageCommercialOffer;
 import io.qameta.allure.Step;
 
-
-import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;

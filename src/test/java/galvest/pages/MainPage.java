@@ -4,6 +4,7 @@ package galvest.pages;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
+import galvest.pages.component.Header;
 import galvest.pages.elements.MainPageElement;
 import io.qameta.allure.Step;
 

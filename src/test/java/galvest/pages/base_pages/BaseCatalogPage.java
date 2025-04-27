@@ -2,7 +2,7 @@ package galvest.pages.base_pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
-import galvest.pages.Header;
+import galvest.pages.component.Header;
 import galvest.pages.component.ProductFilter;
 import galvest.pages.elements.CatalogElement;
 import io.qameta.allure.Step;

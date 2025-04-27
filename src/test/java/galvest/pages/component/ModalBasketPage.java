@@ -1,4 +1,4 @@
-package galvest.pages;
+package galvest.pages.component;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;

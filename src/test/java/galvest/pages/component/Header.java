@@ -1,6 +1,7 @@
-package galvest.pages;
+package galvest.pages.component;
 
 import com.codeborne.selenide.SelenideElement;
+import galvest.pages.GlueCatalogPage;
 import io.qameta.allure.Step;
 
 import java.time.Duration;

@@ -1,4 +1,4 @@
-package galvest.pages;
+package galvest.pages.component;
 
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
@@ -21,19 +21,19 @@ public class ModalPageCommercialOffer extends BasePage {
 
   private final SelenideElement btnDownload = $x("//a[@download]");
 
-
-  public ModalPageCommercialOffer setInputCompany(String value) {
-      fillingOutInputFields(value, inputCompany);
+  @Step("Заполнение поля 'Название компании' {companyName}")
+  public ModalPageCommercialOffer setInputCompany(String companyName) {
+      fillingOutInputFields(companyName, inputCompany);
       return this;
   }
-
-    public ModalPageCommercialOffer setInputName(String value) {
-        fillingOutInputFields(value, inputName);
+    @Step("Заполнение поля 'ФИО' {name}")
+    public ModalPageCommercialOffer setInputName(String name) {
+        fillingOutInputFields(name, inputName);
         return this;
     }
-    @Step("Заполнение поля")
-    public ModalPageCommercialOffer SetInputObjectName(String value) {
-        fillingOutInputFields(value, inputObjectName);
+    @Step("Заполнение поля 'Название объекта' {objectName}")
+    public ModalPageCommercialOffer SetInputObjectName(String objectName) {
+        fillingOutInputFields(objectName, inputObjectName);
         return this;
     }
     @Step("Подтверждение выдачи коммерческого предложения")
