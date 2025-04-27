@@ -2,14 +2,18 @@ package galvest.tests;
 
 import galvest.TestBase;
 import galvest.TestData;
+import galvest.enums.Filter;
 import galvest.pages.*;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
+import static galvest.TestData.COMPANY;
+import static galvest.TestData.OBJECT;
+import static galvest.enums.Product.ANCHOR;
+import static galvest.enums.Product.GLUE;
 
 
-
-public class PlacingAnOrder extends TestBase {
+public class OrderProcessingEndToEndTest extends TestBase {
 
     @Test
     @Story("Оформление заказа как ФЛ")
@@ -24,7 +28,7 @@ public class PlacingAnOrder extends TestBase {
                 .checkElementsUniqueness();
 
 
-        gluePage.addGoodElement(TestData.ProductIndex.EPOXY_GLUE.getIndex())
+        gluePage.addGoodElement(GLUE.getIndex())
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -34,7 +38,7 @@ public class PlacingAnOrder extends TestBase {
 
         BasketPage basketPage = new BasketPage();
         basketPage.addCountGood()
-                .checkAmount(TestData.AMOUNT)
+                .checkAmount(GLUE.getAmount())
                 .placingOrder();
 
         OrderPage orderPage = new OrderPage();
@@ -53,27 +57,28 @@ public class PlacingAnOrder extends TestBase {
     public void commercialOffer() {
 
         AnchorCatalogPage anchorPage = MainPage.open(TestData.BASE_URL)
-                .clickButtonProduct(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
+                .clickButtonProduct(0)
                 .assertTitlePage();
 
         anchorPage
                 .openFilter()
-                .selectBrand("PCI")
-                .selectCountry("Швейцария")
-                .selectBase("Метакрилат")
-                .selectDiameter("1 мм.")
-                .selectTemperature("до +5℃")
-                .selectType("Наливного типа")
+                .selectBrand(Filter.BRAND_PCI.getValue())
+                .selectCountry(Filter.COUNTRY_GERMANY.getValue())
+                .selectBase(Filter.BASE_METHACRYLATE.getValue())
+                .selectDiameter(Filter.DIAMETER_1MM.getValue())
+                .selectTemperature(Filter.TEMP_UP_TO_5.getValue())
+                .selectType(Filter.TYPE_POURABLE.getValue())
                 .clickConfirmBtn()
                 .checkingResult(0)
                 .resetFilters()
-                .selectBrand("BASF")
-                .selectCountry("Швейцария")
-                .selectBase("Винилэфир")
+                .selectBrand(Filter.BRAND_BASF.getValue())
+                .selectCountry(Filter.COUNTRY_SWITZERLAND.getValue())
+                .selectBase(Filter.BASE_VINYL_ETHER.getValue())
+                .checkingResult(1)
                 .clickConfirmBtn();
 
         anchorPage
-                .addGoodElement(TestData.ProductIndex.ANCHOR_PAGE.getIndex())
+                .addGoodElement(ANCHOR.getIndex())
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -82,12 +87,12 @@ public class PlacingAnOrder extends TestBase {
 
         BasketPage basketPage = new BasketPage();
         basketPage
-                .checkAmount("2 318")
+                .checkAmount(ANCHOR.getAmount())
                 .clickCO()
                 .getCommercialOfferPage()
-                .setInputCompany("Тестовая")
+                .setInputCompany(COMPANY)
                 .setInputName(TestData.USERNAME)
-                .SetInputObjectName("Тестовый")
+                .SetInputObjectName(OBJECT)
                 .sendCommercialOffer()
                 .DownloadCO();
     }

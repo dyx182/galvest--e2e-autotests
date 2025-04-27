@@ -44,8 +44,8 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
                 .count() == catElements.getTextElements().size();
     }
 
-    public BaseCatalogPage assertTitlePage() {
-        return this;
+    public T assertTitlePage() {
+        return (T) this;
     }
 
     @Step("Првоерка уникальности элементов")
