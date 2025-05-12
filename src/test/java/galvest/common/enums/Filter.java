@@ -1,4 +1,4 @@
-package galvest.enums;
+package galvest.common.enums;
 
 public enum Filter {
 

@@ -3,7 +3,6 @@ package galvest.pages.base_pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BasePage {
@@ -15,7 +14,4 @@ public class BasePage {
         return sendMessage;
     }
 
-    protected void fillingOutInputFields(String value, SelenideElement  input) {
-                input.should(interactable).sendKeys(String.valueOf(value));
-    }
 }

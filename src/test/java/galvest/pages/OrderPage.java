@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
+import static galvest.utils.PageUtils.fillingOutInputFields;
 
 public class OrderPage extends BasePage {
 

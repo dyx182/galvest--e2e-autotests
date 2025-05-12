@@ -1,6 +1,7 @@
-package galvest;
+package galvest.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -14,7 +15,6 @@ public class TestBase {
     @BeforeAll
     public static void setUp() {
         Configuration.browser = "chrome";
-        //System.setProperty("webdriver.chrome.driver", "путь/к/драйверу");
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10000;
         Configuration.browser = "chrome";
@@ -27,13 +27,13 @@ public class TestBase {
     @BeforeEach
     public void setUpTest() {
         Configuration.headless = false;
-        Configuration.holdBrowserOpen = false;
         Configuration.screenshots = true;
         Configuration.reportsFolder = "target/selenide-reports";
     }
 
     @AfterEach
     public void tearDown() {
+        Selenide.closeWebDriver();
     }
 }
 

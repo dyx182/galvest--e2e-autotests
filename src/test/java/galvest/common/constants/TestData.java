@@ -1,4 +1,4 @@
-package galvest;
+package galvest.common.constants;
 
 public class TestData {
 

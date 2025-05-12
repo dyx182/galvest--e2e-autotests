@@ -1,16 +1,15 @@
 package galvest.tests;
 
-import galvest.TestBase;
-import galvest.TestData;
-import galvest.enums.Filter;
+import galvest.common.constants.TestData;
+import galvest.common.enums.Filter;
 import galvest.pages.*;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
-import static galvest.TestData.COMPANY;
-import static galvest.TestData.OBJECT;
-import static galvest.enums.Product.ANCHOR;
-import static galvest.enums.Product.GLUE;
+import static galvest.common.constants.TestData.COMPANY;
+import static galvest.common.constants.TestData.OBJECT;
+import static galvest.common.enums.Product.ANCHOR;
+import static galvest.common.enums.Product.GLUE;
 
 
 public class OrderProcessingEndToEndTest extends TestBase {
