@@ -41,3 +41,5 @@ build/
 # Файлы Allure
 allure-results/
 allure-report/
+
+src/main/
