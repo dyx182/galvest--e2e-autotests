@@ -3,6 +3,7 @@ package galvest.pages.component;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import galvest.common.enums.Filter;
 import galvest.pages.base_pages.BaseCatalogPage;
 import io.qameta.allure.Step;
 
@@ -19,38 +20,38 @@ public class ProductFilter extends BaseCatalogPage<ProductFilter> {
 
 
     @Step("Выбор производителя: {brandName}")
-    public ProductFilter selectBrand(String brandName) {
-        SelectOption(".//div[contains(@class, 'sumo_brand')]", brandName);
+    public ProductFilter selectBrand(Filter brandName) {
+        SelectOption(".//div[contains(@class, 'sumo_brand')]", brandName.getValue());
         return this;
     }
 
     @Step("Выбор диаметра заполнителя: {diameter}")
-    public ProductFilter selectDiameter(String diameter) {
-        SelectOption(".//div[contains(@class, 'sumo_8')]", diameter);
+    public ProductFilter selectDiameter(Filter diameter) {
+        SelectOption(".//div[contains(@class, 'sumo_8')]", diameter.getValue());
         return this;
     }
 
     @Step("Выбор основы: {baseName}")
-    public ProductFilter selectBase(String baseName) {
-        SelectOption(".//div[contains(@class, 'sumo_4')]", baseName);
+    public ProductFilter selectBase(Filter baseName) {
+        SelectOption(".//div[contains(@class, 'sumo_4')]", baseName.getValue());
         return this;
     }
 
     @Step("Выбор страны: {countryName}")
-    public ProductFilter selectCountry(String countryName) {
-        SelectOption(".//div[contains(@class, 'sumo_3')]", countryName);
+    public ProductFilter selectCountry(Filter countryName) {
+        SelectOption(".//div[contains(@class, 'sumo_3')]", countryName.getValue());
         return this;
     }
 
     @Step("Выбор температуры применения: {temperature}")
-    public ProductFilter selectTemperature(String temperature) {
-        SelectOption(".//div[contains(@class, 'sumo_10')]", temperature);
+    public ProductFilter selectTemperature(Filter temperature) {
+        SelectOption(".//div[contains(@class, 'sumo_10')]", temperature.getValue());
         return this;
     }
 
     @Step("Выбор типа: {typeName}")
-    public ProductFilter selectType(String typeName) {
-        SelectOption(".//div[contains(@class, 'sumo_6')]", typeName);
+    public ProductFilter selectType(Filter typeName) {
+        SelectOption(".//div[contains(@class, 'sumo_6')]", typeName.getValue());
         return this;
     }
 

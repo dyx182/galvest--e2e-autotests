@@ -7,6 +7,7 @@ import galvest.pages.component.Header;
 import galvest.pages.component.ProductFilter;
 import galvest.pages.elements.CatalogElement;
 import io.qameta.allure.Step;
+import lombok.Getter;
 
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;

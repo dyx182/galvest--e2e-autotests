@@ -3,6 +3,7 @@ package galvest.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import galvest.common.enums.CatalogSections;
 import galvest.pages.base_pages.BasePage;
 import galvest.pages.component.Header;
 import galvest.pages.elements.MainPageElement;
@@ -14,11 +15,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class MainPage extends BasePage {
 
     private SelenideElement btnCatOne = $("a.cat1 span");
-
     private Header header = new Header();
-
     private MainPageElement element = new MainPageElement();
-
     public MainPageElement getElement(int index) {
         return new MainPageElement(index);
     }
@@ -33,8 +31,8 @@ public class MainPage extends BasePage {
     }
 
     @Step("Выбор раздела на главной странице")
-    public AnchorCatalogPage clickButtonProduct(int index) {
-        getElement(index).chooseElement();
+    public AnchorCatalogPage goToProductInCatalog(CatalogSections section) {
+        getElement(section.getIndex()).chooseElement();
         return new AnchorCatalogPage();
     }
 

@@ -1,5 +1,10 @@
 package galvest.common.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum Filter {
 
     BRAND_BASF("BASF"),
@@ -34,11 +39,4 @@ public enum Filter {
 
     private final String value;
 
-    Filter (String value) {
-        this.value = value;
-    }
-
-    public String getValue() {
-        return value;
-    }
 }

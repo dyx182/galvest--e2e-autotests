@@ -7,10 +7,11 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
 import static galvest.common.constants.TestConstants.BASE_URL;
+import static galvest.common.enums.CatalogSections.ANCHOR;
+import static galvest.common.enums.Filter.*;
+import static galvest.common.enums.Product.*;
 import static galvest.testdata.TestData.COMPANY;
 import static galvest.testdata.TestData.OBJECT;
-import static galvest.common.enums.Product.ANCHOR;
-import static galvest.common.enums.Product.GLUE;
 
 
 public class OrderProcessingEndToEndTest extends TestBase {
@@ -28,7 +29,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .checkElementsUniqueness();
 
 
-        gluePage.addGoodElement(GLUE)
+        gluePage.addGoodElement(GLUE_PRODUCT)
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -38,7 +39,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
 
         BasketPage basketPage = new BasketPage();
         basketPage.addCountGood()
-                .checkAmount(GLUE)
+                .checkAmount(GLUE_PRODUCT)
                 .placingOrder();
 
         OrderPage orderPage = new OrderPage();
@@ -57,28 +58,28 @@ public class OrderProcessingEndToEndTest extends TestBase {
     public void commercialOffer() {
 
         AnchorCatalogPage anchorPage = MainPage.open(BASE_URL)
-                .clickButtonProduct(0)
+                .goToProductInCatalog(ANCHOR)
                 .assertTitlePage();
 
         anchorPage
                 .openFilter()
-                .selectBrand(Filter.BRAND_PCI.getValue())
-                .selectCountry(Filter.COUNTRY_GERMANY.getValue())
-                .selectBase(Filter.BASE_METHACRYLATE.getValue())
-                .selectDiameter(Filter.DIAMETER_1MM.getValue())
-                .selectTemperature(Filter.TEMP_UP_TO_5.getValue())
-                .selectType(Filter.TYPE_POURABLE.getValue())
+                .selectBrand(BRAND_PCI)
+                .selectCountry(COUNTRY_GERMANY)
+                .selectBase(BASE_METHACRYLATE)
+                .selectDiameter(DIAMETER_1MM)
+                .selectTemperature(TEMP_UP_TO_5)
+                .selectType(TYPE_POURABLE)
                 .clickConfirmBtn()
                 .checkingResult(0)
                 .resetFilters()
-                .selectBrand(Filter.BRAND_BASF.getValue())
-                .selectCountry(Filter.COUNTRY_SWITZERLAND.getValue())
-                .selectBase(Filter.BASE_VINYL_ETHER.getValue())
+                .selectBrand(BRAND_BASF)
+                .selectCountry(COUNTRY_SWITZERLAND)
+                .selectBase(BASE_VINYL_ETHER)
                 .checkingResult(1)
                 .clickConfirmBtn();
 
         anchorPage
-                .addGoodElement(ANCHOR)
+                .addGoodElement(ANCHOR_PRODUCT)
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -87,7 +88,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
 
         BasketPage basketPage = new BasketPage();
         basketPage
-                .checkAmount(ANCHOR)
+                .checkAmount(ANCHOR_PRODUCT)
                 .clickCO()
                 .getCommercialOfferPage()
                 .setInputCompany(COMPANY)

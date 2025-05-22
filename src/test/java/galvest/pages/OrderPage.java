@@ -4,7 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import galvest.pages.base_pages.BasePage;
 import io.qameta.allure.Step;
 
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 import static galvest.utils.PageUtils.fillingOutInputFields;
