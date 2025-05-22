@@ -10,8 +10,7 @@ import static galvest.common.constants.TestConstants.BASE_URL;
 import static galvest.common.enums.CatalogSections.ANCHOR;
 import static galvest.common.enums.Filter.*;
 import static galvest.common.enums.Product.*;
-import static galvest.testdata.TestData.COMPANY;
-import static galvest.testdata.TestData.OBJECT;
+import static galvest.testdata.TestData.*;
 
 
 public class OrderProcessingEndToEndTest extends TestBase {
@@ -43,12 +42,12 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .placingOrder();
 
         OrderPage orderPage = new OrderPage();
-        orderPage.checkAndSetindividualType(TestData.USER_TYPE)
+        orderPage.checkAndSetindividualType(INDIVIDUAL_DATA.getUserType())
                 .setDeliveryOption()
-                .setInputName(TestData.USERNAME)
-                .setinputPhone(TestData.PHONE_NUMBER)
-                .setinputEmail(TestData.EMAIL)
-                .setComment(TestData.COMMENT)
+                .setInputName(INDIVIDUAL_DATA.getUserName())
+                .setinputPhone(INDIVIDUAL_DATA.getPhoneNumber())
+                .setinputEmail(INDIVIDUAL_DATA.getEmail())
+                .setComment(INDIVIDUAL_DATA.getComment())
                 .sendApplication()
                 .confirmOrder();
     }
@@ -91,9 +90,9 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .checkAmount(ANCHOR_PRODUCT)
                 .clickCO()
                 .getCommercialOfferPage()
-                .setInputCompany(COMPANY)
-                .setInputName(TestData.USERNAME)
-                .SetInputObjectName(OBJECT)
+                .setInputCompany(COMMERCIAL_OFFER_DATA.getCompany())
+                .setInputName(COMMERCIAL_OFFER_DATA.getUserName())
+                .SetInputObjectName(COMMERCIAL_OFFER_DATA.getObject())
                 .sendCommercialOffer()
                 .DownloadCO();
     }
