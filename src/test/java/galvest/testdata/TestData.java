@@ -1,8 +1,6 @@
-package galvest.common.constants;
+package galvest.testdata;
 
 public class TestData {
-
-    public static final String BASE_URL = "https://galvest.ru/";
 
     public static final String PHONE_NUMBER = "79998887765";
 

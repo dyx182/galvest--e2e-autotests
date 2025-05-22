@@ -1,13 +1,14 @@
 package galvest.tests;
 
-import galvest.common.constants.TestData;
+import galvest.testdata.TestData;
 import galvest.common.enums.Filter;
 import galvest.pages.*;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
-import static galvest.common.constants.TestData.COMPANY;
-import static galvest.common.constants.TestData.OBJECT;
+import static galvest.common.constants.TestConstants.BASE_URL;
+import static galvest.testdata.TestData.COMPANY;
+import static galvest.testdata.TestData.OBJECT;
 import static galvest.common.enums.Product.ANCHOR;
 import static galvest.common.enums.Product.GLUE;
 
@@ -18,7 +19,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
     @Story("Оформление заказа как ФЛ")
     public void placingOrderTest() {
 
-        GlueCatalogPage gluePage = MainPage.open(TestData.BASE_URL)
+        GlueCatalogPage gluePage = MainPage.open(BASE_URL)
                 .getHeader()
                 .clickBtnCatalog()
                 .clickBtnProduct();
@@ -27,7 +28,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .checkElementsUniqueness();
 
 
-        gluePage.addGoodElement(GLUE.getIndex())
+        gluePage.addGoodElement(GLUE)
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -37,7 +38,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
 
         BasketPage basketPage = new BasketPage();
         basketPage.addCountGood()
-                .checkAmount(GLUE.getAmount())
+                .checkAmount(GLUE)
                 .placingOrder();
 
         OrderPage orderPage = new OrderPage();
@@ -55,7 +56,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
     @Story("Оформление коммерческого предложения")
     public void commercialOffer() {
 
-        AnchorCatalogPage anchorPage = MainPage.open(TestData.BASE_URL)
+        AnchorCatalogPage anchorPage = MainPage.open(BASE_URL)
                 .clickButtonProduct(0)
                 .assertTitlePage();
 
@@ -77,7 +78,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .clickConfirmBtn();
 
         anchorPage
-                .addGoodElement(ANCHOR.getIndex())
+                .addGoodElement(ANCHOR)
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -86,7 +87,7 @@ public class OrderProcessingEndToEndTest extends TestBase {
 
         BasketPage basketPage = new BasketPage();
         basketPage
-                .checkAmount(ANCHOR.getAmount())
+                .checkAmount(ANCHOR)
                 .clickCO()
                 .getCommercialOfferPage()
                 .setInputCompany(COMPANY)

@@ -2,6 +2,7 @@ package galvest.pages.base_pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+import galvest.common.enums.Product;
 import galvest.pages.component.Header;
 import galvest.pages.component.ProductFilter;
 import galvest.pages.elements.CatalogElement;
@@ -63,9 +64,9 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
     }
 
     @Step("Добавление элемента в корзину и получение его названия")
-    public T addGoodElement(int index) {
-        getCatalogElement(index).addElement();
-        savedTitleText = getCatalogElement(index).getTextTitleElement();
+    public T addGoodElement(Product product) {
+        getCatalogElement(product.getIndex()).addElement();
+        savedTitleText = getCatalogElement(product.getIndex()).getTextTitleElement();
         return (T) this;
     }
 

@@ -1,6 +1,7 @@
 package galvest.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import galvest.common.enums.Product;
 import galvest.pages.base_pages.BasePage;
 import galvest.pages.component.ModalPageCommercialOffer;
 import io.qameta.allure.Step;
@@ -34,8 +35,8 @@ public class BasketPage extends BasePage {
         return this;
     }
     @Step("Проверка стоимости")
-    public BasketPage checkAmount(String amount) {
-        String fullText = amount + ",00 р.";
+    public BasketPage checkAmount(Product product) {
+        String fullText = product.getAmount() + ",00 р.";
         try {
             amountText.should(visible).shouldHave(text(fullText));
         }
