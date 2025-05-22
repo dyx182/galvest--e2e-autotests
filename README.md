@@ -7,6 +7,7 @@
 - **JUnit 5** - Запуск тестов
 - **Maven** - Сборка
 - **Allure Report 2.24** - Отчётность
+- **Lombok** - Сокращение шаблонного кода
  
 ## Особенности реализации
 - Гибридная Page Object Model + Component-based design
