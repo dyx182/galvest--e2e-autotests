@@ -5,6 +5,7 @@ import galvest.common.enums.Product;
 import galvest.pages.base_pages.BasePage;
 import galvest.pages.component.ModalPageCommercialOffer;
 import io.qameta.allure.Step;
+import lombok.Getter;
 
 
 import static com.codeborne.selenide.Condition.*;
@@ -14,6 +15,8 @@ import static com.codeborne.selenide.Selenide.$x;
 
 
 public class BasketPage extends BasePage {
+    @Getter
+    ModalPageCommercialOffer CommercialOfferPage;
 
     private final SelenideElement BtnDesignOrder = $("#page_content>div>div.basket_buttons>a.button");
 
@@ -23,16 +26,14 @@ public class BasketPage extends BasePage {
 
     private final SelenideElement btnCommercialOffer= $x("//a[contains (@class, 'button2 call_popup')]");
 
-    ModalPageCommercialOffer commercialOffer = new ModalPageCommercialOffer();
-
-    public ModalPageCommercialOffer getCommercialOfferPage() {
-        return new ModalPageCommercialOffer();
+    public BasketPage() {
+        CommercialOfferPage = new ModalPageCommercialOffer();
     }
 
     @Step("Нажатие кнопки 'Оформить заказ'")
-    public BasketPage placingOrder() {
+    public OrderPage placingOrder() {
         BtnDesignOrder.should(interactable).click();
-        return this;
+        return new OrderPage();
     }
     @Step("Проверка стоимости")
     public BasketPage checkAmount(Product product) {

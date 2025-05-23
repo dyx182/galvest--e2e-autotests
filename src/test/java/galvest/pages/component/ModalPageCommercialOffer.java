@@ -1,6 +1,7 @@
 package galvest.pages.component;
 
 import com.codeborne.selenide.SelenideElement;
+import galvest.models.CommercialOfferDTO;
 import galvest.pages.base_pages.BasePage;
 import io.qameta.allure.Step;
 
@@ -23,18 +24,18 @@ public class ModalPageCommercialOffer extends BasePage {
   private final SelenideElement btnDownload = $x("//a[@download]");
 
   @Step("Заполнение поля 'Название компании' {companyName}")
-  public ModalPageCommercialOffer setInputCompany(String companyName) {
-      fillingOutInputFields(companyName, inputCompany);
+  public ModalPageCommercialOffer setInputCompany(CommercialOfferDTO commercialOffer) {
+      fillingOutInputFields(commercialOffer.getCompany(), inputCompany);
       return this;
   }
     @Step("Заполнение поля 'ФИО' {name}")
-    public ModalPageCommercialOffer setInputName(String name) {
-        fillingOutInputFields(name, inputName);
+    public ModalPageCommercialOffer setInputName(CommercialOfferDTO commercialOffer) {
+        fillingOutInputFields(commercialOffer.getUserName(), inputName);
         return this;
     }
     @Step("Заполнение поля 'Название объекта' {objectName}")
-    public ModalPageCommercialOffer SetInputObjectName(String objectName) {
-        fillingOutInputFields(objectName, inputObjectName);
+    public ModalPageCommercialOffer SetInputObjectName(CommercialOfferDTO commercialOffer) {
+        fillingOutInputFields(commercialOffer.getObject(), inputObjectName);
         return this;
     }
     @Step("Подтверждение выдачи коммерческого предложения")

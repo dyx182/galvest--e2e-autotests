@@ -3,6 +3,7 @@ package galvest.pages.component;
 import com.codeborne.selenide.SelenideElement;
 import galvest.pages.GlueCatalogPage;
 import io.qameta.allure.Step;
+import lombok.Getter;
 
 import java.time.Duration;
 
@@ -11,6 +12,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class Header {
+    @Getter
+    ModalBasketPage modalBasketPage;
 
     private final SelenideElement btnCatalog = $("a.catalog");
 
@@ -20,10 +23,8 @@ public class Header {
 
     private final SelenideElement iconBasket = $x("//span[@class='basket_link']");
 
-    ModalBasketPage modalBasketPage = new ModalBasketPage();
-
-    public ModalBasketPage getModalBasketPage() {
-        return modalBasketPage;
+    public Header() {
+        modalBasketPage = new ModalBasketPage();
     }
 
     @Step("Нажатие кнопки Каталог товаров")

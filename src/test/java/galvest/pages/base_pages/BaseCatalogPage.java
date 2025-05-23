@@ -2,6 +2,7 @@ package galvest.pages.base_pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+import galvest.common.enums.FilteringCheck;
 import galvest.common.enums.Product;
 import galvest.pages.component.Header;
 import galvest.pages.component.ProductFilter;
@@ -17,6 +18,10 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
 
+    @Getter
+    private final Header header;
+    @Getter
+    private String savedTitleText;
 
     private final SelenideElement filterBtn = $x("//span[text()='Показать фильтр']");
 
@@ -24,16 +29,8 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
 
     private final CatalogElement catElements = new CatalogElement();
 
-    private final Header header = new Header();
-
-    private String savedTitleText;
-
-    public String getSavedTitleText() {
-        return savedTitleText;
-    }
-
-    public Header getHeader() {
-        return new Header();
+    public BaseCatalogPage() {
+        header = new Header();
     }
 
     public CatalogElement getCatalogElement(int index) {
@@ -71,14 +68,14 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
         return (T) this;
     }
 
-    @Step("Проверка результатов фильтрации")
-    public T checkingResult(int expectedResult) {
-        switch (expectedResult) {
-            case 0 -> {
+    @Step("Проверка результатов фильтрации {variable}")
+    public T checkingResult(FilteringCheck variable) {
+        switch (variable) {
+            case EMPTY -> {
                 catElements.getElements().should(CollectionCondition.empty);
                 negativeText.should(visible);
             }
-            case 1 -> {
+            case FILLED -> {
                 catElements.getElements()
                         .shouldHave(sizeGreaterThan(0))
                         .first().shouldBe(interactable);

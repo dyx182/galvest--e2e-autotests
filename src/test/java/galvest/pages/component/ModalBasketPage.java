@@ -1,6 +1,7 @@
 package galvest.pages.component;
 
 import com.codeborne.selenide.SelenideElement;
+import galvest.pages.BasketPage;
 import io.qameta.allure.Step;
 
 import java.time.Duration;
@@ -20,8 +21,8 @@ public class ModalBasketPage {
         return this;
     }
     @Step("Нажатие кнопки 'Перейти в корзину'")
-    public ModalBasketPage clickButtonBasket() {
+    public BasketPage clickButtonBasket() {
         btnGoToBasket.should(interactable).click();
-        return this;
+        return new BasketPage();
     }
 }

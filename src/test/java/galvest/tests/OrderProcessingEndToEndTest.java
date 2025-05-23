@@ -1,7 +1,6 @@
 package galvest.tests;
 
-import galvest.testdata.TestData;
-import galvest.common.enums.Filter;
+
 import galvest.pages.*;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
@@ -9,8 +8,11 @@ import org.junit.jupiter.api.Test;
 import static galvest.common.constants.TestConstants.BASE_URL;
 import static galvest.common.enums.CatalogSections.ANCHOR;
 import static galvest.common.enums.Filter.*;
+import static galvest.common.enums.FilteringCheck.FILLED;
+import static galvest.common.enums.FilteringCheck.EMPTY;
 import static galvest.common.enums.Product.*;
 import static galvest.testdata.TestData.*;
+
 
 
 public class OrderProcessingEndToEndTest extends TestBase {
@@ -27,8 +29,8 @@ public class OrderProcessingEndToEndTest extends TestBase {
         gluePage.assertTitlePage()
                 .checkElementsUniqueness();
 
-
-        gluePage.addGoodElement(GLUE_PRODUCT)
+        BasketPage basketPage = gluePage
+                .addGoodElement(GLUE_PRODUCT)
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -36,18 +38,17 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .assertProductTitle(gluePage.getSavedTitleText())
                 .clickButtonBasket();
 
-        BasketPage basketPage = new BasketPage();
         basketPage.addCountGood()
-                .checkAmount(GLUE_PRODUCT)
-                .placingOrder();
+                .checkAmount(GLUE_PRODUCT);
 
-        OrderPage orderPage = new OrderPage();
-        orderPage.checkAndSetindividualType(INDIVIDUAL_DATA.getUserType())
-                .setDeliveryOption()
-                .setInputName(INDIVIDUAL_DATA.getUserName())
-                .setinputPhone(INDIVIDUAL_DATA.getPhoneNumber())
-                .setinputEmail(INDIVIDUAL_DATA.getEmail())
-                .setComment(INDIVIDUAL_DATA.getComment())
+        OrderPage orderPage = basketPage.placingOrder();
+
+        orderPage.setDeliveryOption()
+                .checkAndSetindividualType(INDIVIDUAL_DATA)
+                .setInputName(INDIVIDUAL_DATA)
+                .setinputPhone(INDIVIDUAL_DATA)
+                .setinputEmail(INDIVIDUAL_DATA)
+                .setComment(INDIVIDUAL_DATA)
                 .sendApplication()
                 .confirmOrder();
     }
@@ -69,15 +70,15 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .selectTemperature(TEMP_UP_TO_5)
                 .selectType(TYPE_POURABLE)
                 .clickConfirmBtn()
-                .checkingResult(0)
+                .checkingResult(EMPTY)
                 .resetFilters()
                 .selectBrand(BRAND_BASF)
                 .selectCountry(COUNTRY_SWITZERLAND)
                 .selectBase(BASE_VINYL_ETHER)
-                .checkingResult(1)
+                .checkingResult(FILLED)
                 .clickConfirmBtn();
 
-        anchorPage
+        BasketPage basketPage = anchorPage
                 .addGoodElement(ANCHOR_PRODUCT)
                 .getHeader()
                 .checkCounter()
@@ -85,14 +86,13 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .getModalBasketPage()
                 .clickButtonBasket();
 
-        BasketPage basketPage = new BasketPage();
         basketPage
                 .checkAmount(ANCHOR_PRODUCT)
                 .clickCO()
                 .getCommercialOfferPage()
-                .setInputCompany(COMMERCIAL_OFFER_DATA.getCompany())
-                .setInputName(COMMERCIAL_OFFER_DATA.getUserName())
-                .SetInputObjectName(COMMERCIAL_OFFER_DATA.getObject())
+                .setInputCompany(COMMERCIAL_OFFER_DATA)
+                .setInputName(COMMERCIAL_OFFER_DATA)
+                .SetInputObjectName(COMMERCIAL_OFFER_DATA)
                 .sendCommercialOffer()
                 .DownloadCO();
     }

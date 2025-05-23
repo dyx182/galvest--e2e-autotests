@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 
 
-public class TestBase {
+abstract public class TestBase {
 
     @BeforeAll
     public static void setUp() {
