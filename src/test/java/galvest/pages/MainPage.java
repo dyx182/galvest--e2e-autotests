@@ -16,9 +16,9 @@ import static galvest.utils.PageUtils.waiting;
 
 public class MainPage extends BasePage {
     @Getter
-    private Header header;
+    private final Header header;
     private MainPageElement element;
-    private SelenideElement btnCatOne = $("a.cat1 span");
+    private final SelenideElement btnCatOne = $("a.cat1 span");
 
     public MainPage() {
         header = new Header();
@@ -29,9 +29,6 @@ public class MainPage extends BasePage {
         return new MainPageElement(index);
     }
 
-    public Header getHeader() {
-        return header;
-    }
     @Step("Открытие главной страницы")
     public static MainPage open(String url) {
         Selenide.open(url);
