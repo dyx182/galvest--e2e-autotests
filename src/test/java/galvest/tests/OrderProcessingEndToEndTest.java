@@ -2,6 +2,7 @@ package galvest.tests;
 
 
 import galvest.pages.*;
+import io.qameta.allure.Description;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +15,15 @@ import static galvest.common.enums.Product.*;
 import static galvest.testdata.TestData.*;
 
 
-
 public class OrderProcessingEndToEndTest extends TestBase {
 
     @Test
     @Story("Оформление заказа как ФЛ")
+    @Description("""
+            Тест проверяет возможность оформления заказа на физическое лицо, возможность ввода
+            данных физического лица и оформлением предварительной накладной.
+            Так же проверяет работу чата на странице, каталога и корзины.
+            """)
     public void placingOrderTest() {
 
         GlueCatalogPage gluePage = MainPage.open(BASE_URL)
@@ -55,6 +60,11 @@ public class OrderProcessingEndToEndTest extends TestBase {
 
     @Test
     @Story("Оформление коммерческого предложения")
+    @Description("""
+            Тест проверяет возможность оформления коммерческого предложения, возможность ввода
+            данных юридического лица и оформление спецификации с ценами.
+            Так же проверяет поведение фильтра в каталоге и страницу коммерческого предложеия.
+            """)
     public void commercialOffer() {
 
         AnchorCatalogPage anchorPage = MainPage.open(BASE_URL)
