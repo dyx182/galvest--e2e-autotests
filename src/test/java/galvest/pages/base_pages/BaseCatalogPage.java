@@ -61,10 +61,10 @@ public class BaseCatalogPage<T extends BaseCatalogPage<T>> extends BasePage {
         return new ProductFilter();
     }
 
-    @Step("Добавление элемента в корзину и получение его названия")
-    public T addGoodElement(Product product) {
-        getCatalogElement(product.getIndex()).addElement();
-        savedTitleText = getCatalogElement(product.getIndex()).getTextTitleElement();
+    @Step("Добавление элемента в корзину и получение его названия {index}")
+    public T addGoodElement(Integer index) {
+        getCatalogElement(index).addElement();
+        savedTitleText = getCatalogElement(index).getTextTitleElement();
         return (T) this;
     }
 

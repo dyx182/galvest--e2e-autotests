@@ -24,18 +24,18 @@ public class ModalPageCommercialOffer extends BasePage {
   private final SelenideElement btnDownload = $x("//a[@download]");
 
   @Step("Заполнение поля 'Название компании' {companyName}")
-  public ModalPageCommercialOffer setInputCompany(CommercialOfferDTO commercialOffer) {
-      fillingOutInputFields(commercialOffer.getCompany(), inputCompany);
+  public ModalPageCommercialOffer setInputCompany(String companyName) {
+      fillingOutInputFields(companyName, inputCompany);
       return this;
   }
     @Step("Заполнение поля 'ФИО' {name}")
-    public ModalPageCommercialOffer setInputName(CommercialOfferDTO commercialOffer) {
-        fillingOutInputFields(commercialOffer.getUserName(), inputName);
+    public ModalPageCommercialOffer setInputName(String name) {
+        fillingOutInputFields(name, inputName);
         return this;
     }
     @Step("Заполнение поля 'Название объекта' {objectName}")
-    public ModalPageCommercialOffer SetInputObjectName(CommercialOfferDTO commercialOffer) {
-        fillingOutInputFields(commercialOffer.getObject(), inputObjectName);
+    public ModalPageCommercialOffer SetInputObjectName(String objectName) {
+        fillingOutInputFields(objectName, inputObjectName);
         return this;
     }
     @Step("Подтверждение выдачи коммерческого предложения")

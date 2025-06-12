@@ -35,9 +35,9 @@ public class BasketPage extends BasePage {
         BtnDesignOrder.should(interactable).click();
         return new OrderPage();
     }
-    @Step("Проверка стоимости")
-    public BasketPage checkAmount(Product product) {
-        String fullText = product.getAmount() + ",00 р.";
+    @Step("Проверка стоимости {amount}")
+    public BasketPage checkAmount(String amount) {
+        String fullText = amount + ",00 р.";
         try {
             amountText.should(visible).shouldHave(text(fullText));
         }

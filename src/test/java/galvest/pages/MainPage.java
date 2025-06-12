@@ -35,9 +35,9 @@ public class MainPage extends BasePage {
         return new MainPage();
     }
 
-    @Step("Выбор раздела на главной странице")
-    public AnchorCatalogPage goToProductInCatalog(CatalogSections section) {
-        getElement(section.getIndex()).chooseElement();
+    @Step("Выбор раздела на главной странице {index}")
+    public AnchorCatalogPage goToProductInCatalog(Integer index) {
+        getElement(index).chooseElement();
         return new AnchorCatalogPage();
     }
 

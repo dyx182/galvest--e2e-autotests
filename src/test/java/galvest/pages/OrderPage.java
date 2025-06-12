@@ -33,27 +33,27 @@ public class OrderPage extends BasePage {
 
     private final SelenideElement btnSendApplication = $x("(//button[contains(text(), 'отправить заявку')])[1]");
 
-    @Step("Проверка и выбор опции ФЛ в дд 'Тип пользователя'")
-    public OrderPage checkAndSetindividualType(IndividualDTO data) {
-        while (!data.getUserType().equals(userTypeText.getText())) {
+    @Step("Проверка и выбор опции ФЛ в дд 'Тип пользователя' {userType}")
+    public OrderPage checkAndSetindividualType(String userType) {
+        while (!userType.equals(userTypeText.getText())) {
             this.userType.click();
             individualType.should(interactable).click();
         }
         return this;
     }
-    @Step("Заполнение поля 'ФИО'")
-    public OrderPage setInputName(IndividualDTO data) {
-        fillingOutInputFields(data.getUserName(), inputName);
+    @Step("Заполнение поля 'ФИО' {userName}")
+    public OrderPage setInputName(String userName) {
+        fillingOutInputFields(userName, inputName);
         return this;
     }
-    @Step("Заполнение пооя 'Телефон'")
-    public OrderPage setinputPhone(IndividualDTO data) {
-        fillingOutInputFields(data.getPhoneNumber(), inputPhone);
+    @Step("Заполнение пооя 'Телефон' {phoneNumber}")
+    public OrderPage setinputPhone(String phoneNumber) {
+        fillingOutInputFields(phoneNumber, inputPhone);
         return this;
     }
-    @Step("Заполнения поля 'Email'")
-    public OrderPage setinputEmail(IndividualDTO data) {
-        fillingOutInputFields(data.getEmail(), inputEmail);
+    @Step("Заполнения поля 'Email' {email}")
+    public OrderPage setinputEmail(String email) {
+        fillingOutInputFields(email, inputEmail);
         return this;
     }
     @Step("Проверка чек бокса 'Доставка'")
@@ -63,9 +63,9 @@ public class OrderPage extends BasePage {
         }
         return this;
     }
-    @Step("Добавление комментария в поле 'Комментарий к заказу'")
-    public OrderPage setComment(IndividualDTO data) {
-        fillingOutInputFields(data.getComment(), inputComment);
+    @Step("Добавление комментария в поле 'Комментарий к заказу' {comment}")
+    public OrderPage setComment(String comment) {
+        fillingOutInputFields(comment, inputComment);
         return this;
     }
     @Step("Подтверждение оформления заказа")

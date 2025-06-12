@@ -29,31 +29,28 @@ public class OrderProcessingEndToEndTest extends TestBase {
         GlueCatalogPage gluePage = MainPage.open(BASE_URL)
                 .getHeader()
                 .clickBtnCatalog()
-                .clickBtnProduct();
-
-        gluePage.assertTitlePage()
+                .clickBtnProduct()
+                .assertTitlePage()
                 .checkElementsUniqueness();
 
         BasketPage basketPage = gluePage
-                .addGoodElement(GLUE_PRODUCT)
+                .addGoodElement(GLUE_PRODUCT.getIndex())
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
                 .getModalBasketPage()
                 .assertProductTitle(gluePage.getSavedTitleText())
-                .clickButtonBasket();
+                .clickButtonBasket()
+                .addCountGood()
+                .checkAmount(GLUE_PRODUCT.getAmount());
 
-        basketPage.addCountGood()
-                .checkAmount(GLUE_PRODUCT);
-
-        OrderPage orderPage = basketPage.placingOrder();
-
-        orderPage.setDeliveryOption()
-                .checkAndSetindividualType(INDIVIDUAL_DATA)
-                .setInputName(INDIVIDUAL_DATA)
-                .setinputPhone(INDIVIDUAL_DATA)
-                .setinputEmail(INDIVIDUAL_DATA)
-                .setComment(INDIVIDUAL_DATA)
+        basketPage.placingOrder()
+                .setDeliveryOption()
+                .checkAndSetindividualType(INDIVIDUAL_DATA.getUserType())
+                .setInputName(INDIVIDUAL_DATA.getUserName())
+                .setinputPhone(INDIVIDUAL_DATA.getPhoneNumber())
+                .setinputEmail(INDIVIDUAL_DATA.getEmail())
+                .setComment(INDIVIDUAL_DATA.getComment())
                 .sendApplication()
                 .confirmOrder();
     }
@@ -68,28 +65,28 @@ public class OrderProcessingEndToEndTest extends TestBase {
     public void commercialOffer() {
 
         AnchorCatalogPage anchorPage = MainPage.open(BASE_URL)
-                .goToProductInCatalog(ANCHOR)
+                .goToProductInCatalog(ANCHOR.getIndex())
                 .assertTitlePage();
 
         anchorPage
                 .openFilter()
-                .selectBrand(BRAND_PCI)
-                .selectCountry(COUNTRY_GERMANY)
-                .selectBase(BASE_METHACRYLATE)
-                .selectDiameter(DIAMETER_1MM)
-                .selectTemperature(TEMP_UP_TO_5)
-                .selectType(TYPE_POURABLE)
+                .selectBrand(BRAND_PCI.getValue())
+                .selectCountry(COUNTRY_GERMANY.getValue())
+                .selectBase(BASE_METHACRYLATE.getValue())
+                .selectDiameter(DIAMETER_1MM.getValue())
+                .selectTemperature(TEMP_UP_TO_5.getValue())
+                .selectType(TYPE_POURABLE.getValue())
                 .clickConfirmBtn()
                 .checkingResult(EMPTY)
                 .resetFilters()
-                .selectBrand(BRAND_BASF)
-                .selectCountry(COUNTRY_SWITZERLAND)
-                .selectBase(BASE_VINYL_ETHER)
+                .selectBrand(BRAND_BASF.getValue())
+                .selectCountry(COUNTRY_SWITZERLAND.getValue())
+                .selectBase(BASE_VINYL_ETHER.getValue())
                 .checkingResult(FILLED)
                 .clickConfirmBtn();
 
         BasketPage basketPage = anchorPage
-                .addGoodElement(ANCHOR_PRODUCT)
+                .addGoodElement(ANCHOR_PRODUCT.getIndex())
                 .getHeader()
                 .checkCounter()
                 .linkToBasket()
@@ -97,12 +94,12 @@ public class OrderProcessingEndToEndTest extends TestBase {
                 .clickButtonBasket();
 
         basketPage
-                .checkAmount(ANCHOR_PRODUCT)
+                .checkAmount(ANCHOR_PRODUCT.getAmount())
                 .clickCO()
                 .getCommercialOfferPage()
-                .setInputCompany(COMMERCIAL_OFFER_DATA)
-                .setInputName(COMMERCIAL_OFFER_DATA)
-                .SetInputObjectName(COMMERCIAL_OFFER_DATA)
+                .setInputCompany(COMMERCIAL_OFFER_DATA.getCompany())
+                .setInputName(COMMERCIAL_OFFER_DATA.getUserName())
+                .SetInputObjectName(COMMERCIAL_OFFER_DATA.getObject())
                 .sendCommercialOffer()
                 .DownloadCO();
     }
